@@ -27,7 +27,7 @@ const FeedPage = (() => {
       <div class="page-header" style="padding:12px 16px 8px;">
         <div style="display:flex;align-items:center;gap:8px;">
           <span style="font-size:22px;">🦋</span>
-          <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;">Mixte-Meet</span>
+          <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;">Bizi 228+1</span>
         </div>
         <div style="display:flex;gap:8px;">
           <button class="header-btn" onclick="FeedPage.showFilters()">⚙️</button>

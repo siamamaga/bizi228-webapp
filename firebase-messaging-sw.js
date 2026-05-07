@@ -4,9 +4,9 @@ importScripts('https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging-comp
 
 firebase.initializeApp({
   apiKey: "AIzaSyDFsYsWBwKq1d0kNdJYJlX0ewGugUfyZmk",
-  authDomain: "mixte-meet.firebaseapp.com",
-  projectId: "mixte-meet",
-  storageBucket: "mixte-meet.firebasestorage.app",
+  authDomain: "Bizi 228+1.firebaseapp.com",
+  projectId: "Bizi 228+1",
+  storageBucket: "Bizi 228+1.firebasestorage.app",
   messagingSenderId: "1035382105933",
   appId: "1:1035382105933:web:9ec53944535d1eb12db904"
 });

@@ -7,7 +7,7 @@ function parseDate(str) {
   return new Date(str.replace(' ', 'T'));
 }
 
-// Mixte-Meet SPA Router
+// Bizi 228+1 SPA Router
 const App = (() => {
   let currentPage = 'feed';
   const pages = {
@@ -99,9 +99,9 @@ const App = (() => {
   }, 5000);
 
   // Wake-up et keep-alive
-  fetch('https://api.mixte-meet.fr/api/ping').catch(() => {});
+  fetch('https://api.Bizi 228+1.fr/api/ping').catch(() => {});
   setInterval(function() {
-    fetch('https://api.mixte-meet.fr/api/ping').catch(() => {});
+    fetch('https://api.Bizi 228+1.fr/api/ping').catch(() => {});
   }, 60000);
 
   document.addEventListener('DOMContentLoaded', init);
@@ -114,7 +114,7 @@ const App = (() => {
       Modal.show(
         '<div style="text-align:center;padding:16px;">' +
           '<div style="font-size:48px;margin-bottom:12px;">🦋</div>' +
-          '<p style="font-size:16px;font-weight:600;margin-bottom:8px;">Quitter Mixte-Meet ?</p>' +
+          '<p style="font-size:16px;font-weight:600;margin-bottom:8px;">Quitter Bizi 228+1 ?</p>' +
           '<p style="font-size:13px;color:var(--muted);margin-bottom:20px;">L\'amour n\'a pas de frontières !</p>' +
           '<div style="display:flex;gap:10px;">' +
             '<button onclick="Modal.close()" style="flex:1;background:linear-gradient(135deg,var(--pink),#C41F65);border:none;color:white;padding:12px;border-radius:50px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;">Rester 🦋</button>' +

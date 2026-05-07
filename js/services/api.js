@@ -1,6 +1,6 @@
 // js/services/api.js
 const API = (() => {
-  const BASE = 'https://api.mixte-meet.fr/api';
+  const BASE = 'https://api.Bizi 228+1.fr/api';
 
   async function request(method, path, body = null, isFormData = false) {
     const token = AuthService.getToken();

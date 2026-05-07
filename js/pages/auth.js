@@ -36,7 +36,7 @@ const AuthPage = (() => {
               <path d="M28 36 C32 30, 44 22, 48 25 C52 28, 46 38, 34 37 C31 37, 29 36.5, 28 36Z" fill="black" opacity="0.55"/>
             </svg>
           </div>
-          <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:6px;">Mixte-Meet</h1>
+          <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:6px;">Bizi 228+1</h1>
           <p style="font-size:14px;color:var(--muted);">L'amour n'a pas de frontières 🌍</p>
         </div>
 
@@ -422,7 +422,7 @@ const AuthPage = (() => {
         const email = form.email.value.trim();
         const password = form.password.value;
         await AuthService.login(email, password);
-        Toast.success('Bienvenue sur Mixte-Meet ! 🦋');
+        Toast.success('Bienvenue sur Bizi 228+1 ! 🦋');
         setTimeout(() => App.showApp(), 500);
       });
     },
@@ -455,7 +455,7 @@ const AuthPage = (() => {
       AuthService.save({
         accessToken: 'demo_token',
         refreshToken: 'demo_refresh',
-        user: { id: 1, uuid: 'demo-uuid', email: 'demo@mixte-meet.com', first_name: 'Démo', gender: 'man', country_code: 'FR', is_premium: true, coins: 500 }
+        user: { id: 1, uuid: 'demo-uuid', email: 'demo@Bizi 228+1.com', first_name: 'Démo', gender: 'man', country_code: 'FR', is_premium: true, coins: 500 }
       });
       Toast.info('Mode démo activé 🎭');
       setTimeout(() => App.showApp(), 500);
@@ -466,7 +466,7 @@ const AuthPage = (() => {
       if (btn) { btn.disabled = true; btn.innerHTML = '<span class="loader-spinner" style="width:18px;height:18px;margin:0 auto;"></span>'; }
       try {
         await AuthService.register(onboardingData);
-        Toast.success('Profil créé ! Bienvenue sur Mixte-Meet 🦋');
+        Toast.success('Profil créé ! Bienvenue sur Bizi 228+1 🦋');
         setTimeout(() => App.showApp(), 600);
       } catch (err) {
         Toast.error(err.message || 'Erreur lors de la création du compte');

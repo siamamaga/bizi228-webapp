@@ -27,7 +27,7 @@ const VideoCall = (() => {
           'turn:79.143.189.106:3478',
           'turns:79.143.189.106:5349'
         ],
-        username: 'mixtemeet',
+        username: 'Bizi228plus1',
         credential: 'TurnPassword2026'
       }
     ]

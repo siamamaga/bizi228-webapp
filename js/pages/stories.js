@@ -145,7 +145,7 @@ const StoriesPage = (() => {
       const fd = new FormData();
       fd.append('media', file);
       const token = AuthService.getToken();
-      fetch('https://api.mixte-meet.fr/api/stories', {
+      fetch('https://api.Bizi 228+1.fr/api/stories', {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + token },
         body: fd
