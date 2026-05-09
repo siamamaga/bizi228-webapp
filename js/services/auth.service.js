@@ -16,9 +16,9 @@ const AuthService = (() => {
 
   // ── Sauvegarde des credentials ────────────────────────────────────────────
   function save(data) {
-    if (data.accessToken)  localStorage.setItem(KEYS.token,   data.accessToken);
-    if (data.refreshToken) localStorage.setItem(KEYS.refresh, data.refreshToken);
-    if (data.user)         localStorage.setItem(KEYS.user,    JSON.stringify(data.user));
+    const d = data.data || data; if (d.accessToken) localStorage.setItem(KEYS.token, d.accessToken);
+    if (d.refreshToken) localStorage.setItem(KEYS.refresh, d.refreshToken);
+    if (d.user) localStorage.setItem(KEYS.user, JSON.stringify(d.user));
   }
 
   function clear() {
