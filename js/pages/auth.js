@@ -1,46 +1,30 @@
 // js/pages/auth.js
 const AuthPage = (() => {
 
-  const COUNTRIES = [
-    {code:'BJ',name:'Bénin',flag:'🇧🇯'},{code:'CI',name:'Côte d\'Ivoire',flag:'🇨🇮'},
-    {code:'SN',name:'Sénégal',flag:'🇸🇳'},{code:'NG',name:'Nigéria',flag:'🇳🇬'},
-    {code:'GH',name:'Ghana',flag:'🇬🇭'},{code:'CM',name:'Cameroun',flag:'🇨🇲'},
-    {code:'TG',name:'Togo',flag:'🇹🇬'},{code:'ML',name:'Mali',flag:'🇲🇱'},
-    {code:'MA',name:'Maroc',flag:'🇲🇦'},{code:'DZ',name:'Algérie',flag:'🇩🇿'},
-    {code:'TN',name:'Tunisie',flag:'🇹🇳'},{code:'EG',name:'Égypte',flag:'🇪🇬'},
-    {code:'KE',name:'Kenya',flag:'🇰🇪'},{code:'ZA',name:'Afrique du Sud',flag:'🇿🇦'},
-    {code:'FR',name:'France',flag:'🇫🇷'},{code:'BE',name:'Belgique',flag:'🇧🇪'},
-    {code:'CH',name:'Suisse',flag:'🇨🇭'},{code:'DE',name:'Allemagne',flag:'🇩🇪'},
-    {code:'GB',name:'Royaume-Uni',flag:'🇬🇧'},{code:'ES',name:'Espagne',flag:'🇪🇸'},
-    {code:'IT',name:'Italie',flag:'🇮🇹'},{code:'PT',name:'Portugal',flag:'🇵🇹'},
-    {code:'US',name:'États-Unis',flag:'🇺🇸'},{code:'CA',name:'Canada',flag:'🇨🇦'},
-    {code:'BR',name:'Brésil',flag:'🇧🇷'},{code:'AE',name:'Émirats',flag:'🇦🇪'},
-    {code:'RW',name:'Rwanda',flag:'🇷🇼'},{code:'CD',name:'Congo RDC',flag:'🇨🇩'},
-    {code:'MG',name:'Madagascar',flag:'🇲🇬'},{code:'MU',name:'Maurice',flag:'🇲🇺'},
-  ];
-
   let onboardingData = {};
   let currentStep = 1;
-  const TOTAL_STEPS = 6;
+  const TOTAL_STEPS = 3;
 
   function render() {
     const view = document.getElementById('view-auth');
     view.innerHTML = `
-      <div style="min-height:100vh;background:#FFFBF5;display:flex;flex-direction:column;overflow-y:scroll;-webkit-overflow-scrolling:touch;">
-        <div style="padding:56px 24px 0;text-align:center;">
-          <div style="margin:0 auto 8px;"><img src="/icons/bizi-logo.jpg" style="width:280px;height:280px;object-fit:contain;" alt="Bizi 228+1">
+      <div style="min-height:100vh;background:#FFF8F0;display:flex;flex-direction:column;overflow-y:scroll;-webkit-overflow-scrolling:touch;">
+        <div style="padding:48px 24px 0;text-align:center;">
+          <div style="margin:0 auto 8px;">
+            <img src="/icons/bizi-logo.jpg" style="width:260px;height:260px;object-fit:contain;" alt="Bizi 228+1">
           </div>
-          
-          <p style="font-size:15px;font-weight:700;color:#1C1917;font-family:Syne,sans-serif;margin-top:8px;">Tu pensais avoir tout vu ? Attends d'entrer ici.</p>
+          <p style="font-size:15px;font-weight:700;color:#3D1A00;font-family:'Playfair Display',serif;margin-top:8px;">
+            Tu pensais avoir tout vu ? Attends d'entrer ici.
+          </p>
         </div>
 
-        <div style="display:flex;gap:0;padding:32px 24px 0;border-bottom:1px solid var(--border);margin-top:32px;">
+        <div style="display:flex;gap:0;padding:28px 24px 0;border-bottom:1px solid #FFE4C4;margin-top:24px;">
           <button id="tab-login" onclick="AuthPage.showLogin()"
-            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid var(--pink);color:#1C1917;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;">
+            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid #D4380D;color:#3D1A00;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;cursor:pointer;">
             Connexion
           </button>
           <button id="tab-register" onclick="AuthPage.showRegister()"
-            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid transparent;color:#78716C;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;cursor:pointer;">
+            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid transparent;color:#C4865A;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;">
             S'inscrire
           </button>
         </div>
@@ -58,30 +42,29 @@ const AuthPage = (() => {
         <div style="display:flex;flex-direction:column;gap:16px;">
           <div class="input-group">
             <label class="input-label">Email</label>
-            <div class="input-icon-wrap">
-              <span class="input-icon">✉️</span>
-              <input name="email" type="email" class="input-field" placeholder="votre@email.com" autocomplete="email" required>
-            </div>
+            <input name="email" type="email" class="input-field" placeholder="votre@email.com" autocomplete="email" required>
           </div>
           <div class="input-group">
             <label class="input-label">Mot de passe</label>
             <div style="position:relative;">
               <input name="password" id="login-password" type="password" class="input-field" placeholder="••••••••" autocomplete="current-password" required style="padding-right:48px;">
-              <button type="button" onclick="AuthPage.togglePassword('login-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#A8A29E;padding:4px;">👁️</button>
+              <button type="button" onclick="AuthPage.togglePassword('login-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#C4865A;padding:4px;">👁️</button>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px;">
-            Se connecter
+          <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px;padding:16px;font-size:16px;">
+            Entrer maintenant 🔥
           </button>
-          <div class="divider">ou</div>
-          <button type="button" class="btn btn-secondary btn-full" onclick="AuthPage.demoLogin()">
+          <div style="display:flex;align-items:center;gap:8px;color:#C4865A;font-size:12px;">
+            <div style="flex:1;height:1px;background:#FFE4C4;"></div>ou<div style="flex:1;height:1px;background:#FFE4C4;"></div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-full" style="padding:14px;" onclick="AuthPage.demoLogin()">
             🎭 Connexion démo
           </button>
-          <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:4px;">
-            <button type="button" onclick="AuthPage.forgotPassword()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;">Mot de passe oublié ?</button>
+          <p style="text-align:center;font-size:13px;color:#C4865A;margin-top:4px;">
+            <button type="button" onclick="AuthPage.forgotPassword()" style="background:none;border:none;color:#C4865A;cursor:pointer;font-size:13px;">Mot de passe oublié ?</button>
           </p>
-          <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:4px;">
-            Pas encore inscrit ? <button type="button" onclick="AuthPage.showRegister()" style="background:none;border:none;color:var(--pink-light);cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;">Créer un compte</button>
+          <p style="text-align:center;font-size:13px;color:#C4865A;">
+            Pas encore inscrit ? <button type="button" onclick="AuthPage.showRegister()" style="background:none;border:none;color:#D4380D;cursor:pointer;font-size:13px;font-weight:700;">Créer un compte</button>
           </p>
         </div>
       </form>
@@ -89,204 +72,135 @@ const AuthPage = (() => {
   }
 
   function renderOnboardingStep(step) {
+    const progressW = Math.round((step / TOTAL_STEPS) * 100);
+    const header = `
+      <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
+        ${step > 1 ? `<button onclick="AuthPage.prevStep()" class="header-btn">←</button>` : '<div style="width:36px;"></div>'}
+        <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${progressW}%"></div></div>
+        <span style="font-size:12px;color:#C4865A;font-family:'Plus Jakarta Sans',sans-serif;">${step}/${TOTAL_STEPS}</span>
+      </div>`;
+
     const steps = {
       1: `
         <div class="onboarding-step">
-          <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
-            ${step > 1 ? `<button onclick="AuthPage.prevStep()" class="header-btn">←</button>` : ''}
-            <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
-          </div>
+          ${header}
           <div class="onboarding-content">
-            <div class="onboarding-title">Bienvenue chez Bizi 228+1 🔥</div>
-            <p class="onboarding-desc">Commençons par votre identité. Ces informations ne seront jamais partagées.</p>
+            <div class="onboarding-title">Ce soir, <em>tout</em> est possible 🔥</div>
+            <p class="onboarding-desc">Vite fait, bien fait. Juste l'essentiel.</p>
             <div style="display:flex;flex-direction:column;gap:14px;">
               <div class="input-group">
                 <label class="input-label">Prénom *</label>
-                <input id="ob-firstname" type="text" class="input-field" placeholder="Votre prénom" value="${onboardingData.first_name||''}">
+                <input id="ob-firstname" type="text" class="input-field" placeholder="Ton prénom" value="${onboardingData.first_name||''}">
               </div>
               <div class="input-group">
                 <label class="input-label">Date de naissance *</label>
                 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-                  <select id="ob-birth-day" class="input-field" style="padding:12px 8px;font-size:13px;"><option value="">Jour</option><option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select>
-                  <select id="ob-birth-month" class="input-field" style="padding:12px 8px;font-size:13px;"><option value="">Mois</option><option value="01">Janvier</option><option value="02">Février</option><option value="03">Mars</option><option value="04">Avril</option><option value="05">Mai</option><option value="06">Juin</option><option value="07">Juillet</option><option value="08">Août</option><option value="09">Septembre</option><option value="10">Octobre</option><option value="11">Novembre</option><option value="12">Décembre</option></select>
-                  <select id="ob-birth-year" class="input-field" style="padding:12px 8px;font-size:13px;"><option value="">Année</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option><option value="1965">1965</option><option value="1960">1960</option></select>
+                  <select id="ob-birth-day" class="input-field" style="padding:12px 8px;font-size:13px;">
+                    <option value="">Jour</option>
+                    ${Array.from({length:31},(_,i)=>`<option value="${String(i+1).padStart(2,'0')}">${i+1}</option>`).join('')}
+                  </select>
+                  <select id="ob-birth-month" class="input-field" style="padding:12px 8px;font-size:13px;">
+                    <option value="">Mois</option>
+                    ${['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre']
+                      .map((m,i)=>`<option value="${String(i+1).padStart(2,'0')}">${m}</option>`).join('')}
+                  </select>
+                  <select id="ob-birth-year" class="input-field" style="padding:12px 8px;font-size:13px;">
+                    <option value="">Année</option>
+                    ${Array.from({length:50},(_,i)=>2006-i).map(y=>`<option value="${y}">${y}</option>`).join('')}
+                  </select>
                 </div>
               </div>
               <div class="input-group">
                 <label class="input-label">Email *</label>
-                <input id="ob-email" type="email" class="input-field" placeholder="votre@email.com" value="${onboardingData.email||''}">
+                <input id="ob-email" type="email" class="input-field" placeholder="ton@email.com" value="${onboardingData.email||''}">
               </div>
               <div class="input-group">
                 <label class="input-label">Mot de passe *</label>
                 <div style="position:relative;">
                   <input id="ob-password" type="password" class="input-field" placeholder="Minimum 8 caractères" style="padding-right:48px;">
-                  <button type="button" onclick="AuthPage.togglePassword('ob-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#A8A29E;padding:4px;">👁️</button>
+                  <button type="button" onclick="AuthPage.togglePassword('ob-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#C4865A;padding:4px;">👁️</button>
                 </div>
               </div>
             </div>
           </div>
-          <div style="padding:0 24px 24px;">
-            <button class="btn btn-primary btn-full" onclick="AuthPage.nextStep(1)">Continuer →</button>
+          <div style="padding:16px 24px 32px;">
+            <button class="btn btn-primary btn-full" style="padding:16px;font-size:16px;" onclick="AuthPage.nextStep(1)">Continuer →</button>
           </div>
         </div>
       `,
+
       2: `
         <div class="onboarding-step">
-          <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
-            <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
-            <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
-          </div>
+          ${header}
           <div class="onboarding-content">
             <div class="onboarding-title">Je suis...</div>
-            <p class="onboarding-desc">Sélectionnez votre genre.</p>
-            <div class="option-grid">
-              ${[{v:'man',icon:'👨',l:'Homme'},{v:'woman',icon:'👩',l:'Femme'},{v:'non_binary',icon:'🧑',l:'Non-binaire'},{v:'other',icon:'💫',l:'Autre'}]
-                .map(g => `<div class="option-card \" onclick="AuthPage.selectGender('${g.v}')">
-                  <div class="option-card-icon">${g.icon}</div>
-                  <div class="option-card-label">${g.l}</div>
-                </div>`).join('')}
+            <p class="onboarding-desc">Et je cherche...</p>
+            <div style="margin-bottom:20px;">
+              <label class="input-label" style="margin-bottom:10px;display:block;">Mon genre</label>
+              <div class="option-grid">
+                <div class="option-card ${onboardingData.gender==='man'?'selected':''}" onclick="AuthPage.selectGender('man',this)">
+                  <div class="option-card-icon">👨</div>
+                  <div class="option-card-label">Homme</div>
+                </div>
+                <div class="option-card ${onboardingData.gender==='woman'?'selected':''}" onclick="AuthPage.selectGender('woman',this)">
+                  <div class="option-card-icon">👩</div>
+                  <div class="option-card-label">Femme</div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <label class="input-label" style="margin-bottom:10px;display:block;">Je cherche</label>
+              <div class="option-grid">
+                <div class="option-card ${onboardingData.looking_for==='man'?'selected':''}" onclick="AuthPage.selectLookingFor('man',this)">
+                  <div class="option-card-icon">👨</div>
+                  <div class="option-card-label">Des hommes</div>
+                </div>
+                <div class="option-card ${onboardingData.looking_for==='woman'?'selected':''}" onclick="AuthPage.selectLookingFor('woman',this)">
+                  <div class="option-card-icon">👩</div>
+                  <div class="option-card-label">Des femmes</div>
+                </div>
+                <div class="option-card ${onboardingData.looking_for==='all'?'selected':''}" onclick="AuthPage.selectLookingFor('all',this)" style="grid-column:1/-1;">
+                  <div class="option-card-icon">💞</div>
+                  <div class="option-card-label">Tout le monde</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div style="padding:0 24px 24px;">
-            <button class="btn btn-primary btn-full" onclick="AuthPage.nextStep(2)">Continuer →</button>
+          <div style="padding:16px 24px 32px;">
+            <button class="btn btn-primary btn-full" style="padding:16px;font-size:16px;" onclick="AuthPage.nextStep(2)">Continuer →</button>
           </div>
         </div>
       `,
+
       3: `
         <div class="onboarding-step">
-          <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
-            <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
-            <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
-          </div>
+          ${header}
           <div class="onboarding-content">
-            <div class="onboarding-title">Je recherche...</div>
-            <p class="onboarding-desc">Vous pourrez affiner vos préférences plus tard.</p>
-            <div class="option-grid">
-              ${[{v:'man',icon:'👨',l:'Des hommes'},{v:'woman',icon:'👩',l:'Des femmes'},{v:'non_binary',icon:'🧑',l:'Non-binaires'},{v:'all',icon:'💞',l:'Tout le monde'}]
-                .map(g => `<div class="option-card ${onboardingData.looking_for===g.v?'selected':''}" onclick="AuthPage.selectLookingFor('${g.v}')">
-                  <div class="option-card-icon">${g.icon}</div>
-                  <div class="option-card-label">${g.l}</div>
-                </div>`).join('')}
+            <div class="onboarding-title">Tu es où ce soir ? 📍</div>
+            <p class="onboarding-desc">On connecte le Togo et le Bénin — on t'en met plein les yeux.</p>
+            <div class="option-grid" style="margin-top:16px;">
+              <div class="option-card ${onboardingData.country_code==='TG'?'selected':''}" onclick="AuthPage.selectCountry('TG',this)">
+                <div class="option-card-icon">🇹🇬</div>
+                <div class="option-card-label">Togo</div>
+                <div style="font-size:10px;color:#C4865A;margin-top:4px;">Lomé & environs</div>
+              </div>
+              <div class="option-card ${onboardingData.country_code==='BJ'?'selected':''}" onclick="AuthPage.selectCountry('BJ',this)">
+                <div class="option-card-icon">🇧🇯</div>
+                <div class="option-card-label">Bénin</div>
+                <div style="font-size:10px;color:#C4865A;margin-top:4px;">Cotonou & environs</div>
+              </div>
             </div>
-          </div>
-          <div style="padding:0 24px 24px;">
-            <button class="btn btn-primary btn-full" onclick="AuthPage.nextStep(3)">Continuer →</button>
-          </div>
-        </div>
-      `,
-      4: `
-        <div class="onboarding-step">
-          <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
-            <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
-            <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
-          </div>
-          <div class="onboarding-content">
-            <div class="onboarding-title">D'où venez-vous ? 🌍</div>
-            <p class="onboarding-desc">Votre origine est votre richesse — partagez-la.</p>
-            <div class="input-group">
-              <label class="input-label">Votre pays</label>
-              <select id="ob-country" class="input-field">
-                <option value="">Sélectionnez votre pays...</option>
-                ${COUNTRIES.map(c => `<option value="${c.code}" ${onboardingData.country_code===c.code?'selected':''}>${c.flag} ${c.name}</option>`).join('')}
-              </select>
-            </div>
-            <div class="input-group" style="margin-top:14px;">
+            <div style="margin-top:16px;" class="input-group">
               <label class="input-label">Ville (optionnel)</label>
-              <input id="ob-city" type="text" class="input-field" placeholder="Ex: Paris, Abidjan..." value="${onboardingData.city||''}">
+              <input id="ob-city" type="text" class="input-field" placeholder="Ex: Lomé, Cotonou, Porto-Novo..." value="${onboardingData.city||''}">
             </div>
-            <div class="toggle-row" style="margin-top:20px;">
-              <div>
-                <div class="toggle-label">Ouvert(e) aux rencontres mixtes</div>
-                <div class="toggle-desc">Rencontres interculturelles, interraciales</div>
-              </div>
-              <div class="toggle on" id="toggle-interracial" onclick="this.classList.toggle('on')"></div>
-            </div>
+            <p style="font-size:11px;color:#C4865A;text-align:center;margin-top:16px;">
+              En créant un compte, tu confirmes avoir <strong>18 ans ou plus</strong> et accepter nos CGU.
+            </p>
           </div>
-          <div style="padding:0 24px 24px;">
-            <button class="btn btn-primary btn-full" onclick="AuthPage.nextStep(4)">Continuer →</button>
-          </div>
-        </div>
-      `,
-      5: `
-        <div class="onboarding-step">
-          <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
-            <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
-            <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
-          </div>
-          <div class="onboarding-content">
-            <div class="onboarding-title">Parlez-nous de <em>vous</em> ✨</div>
-            <p class="onboarding-desc">Quelques mots qui vous définissent. Vous pourrez modifier ça plus tard.</p>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-              <div class="input-group">
-                <label class="input-label">Votre bio</label>
-                <textarea id="ob-bio" class="input-field" placeholder="Je suis curieux(se), j'aime voyager, la cuisine et les rencontres authentiques..." rows="4" style="resize:none;">${onboardingData.bio||''}</textarea>
-              </div>
-              <div class="input-group">
-                <label class="input-label">Profession (optionnel)</label>
-                <input id="ob-profession" type="text" class="input-field" placeholder="Ex: Ingénieur, Enseignant, Entrepreneur..." value="${onboardingData.profession||''}">
-              </div>
-              <div class="input-group">
-                <label class="input-label">Langues parlées</label>
-                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
-                  ${[{v:'fr',l:'🇫🇷 Français'},{v:'en',l:'🇬🇧 Anglais'},{v:'es',l:'🇪🇸 Espagnol'},{v:'pt',l:'🇧🇷 Portugais'},{v:'ar',l:'🇸🇦 Arabe'},{v:'wo',l:'🇸🇳 Wolof'},{v:'yo',l:'🇳🇬 Yoruba'}]
-                    .map(lang => `<div class="filter-chip ${(onboardingData.languages||[]).includes(lang.v)?'active':''}" onclick="AuthPage.toggleLang('${lang.v}',this)">${lang.l}</div>`).join('')}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style="padding:0 24px 24px;">
-            <button class="btn btn-primary btn-full" onclick="AuthPage.nextStep(5)">Continuer →</button>
-          </div>
-        </div>
-      `,
-      6: `
-        <div class="onboarding-step">
-          <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
-            <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
-            <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:100%"></div></div>
-            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
-          </div>
-          <div class="onboarding-content">
-            <div class="onboarding-title">Vos préférences 💫</div>
-            <p class="onboarding-desc">Ces infos nous aident à trouver vos meilleures correspondances.</p>
-            <div style="display:flex;flex-direction:column;gap:20px;">
-              <div>
-                <label class="input-label">💪 Votre corpulence</label>
-                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
-                  <div class="filter-chip ${onboardingData.body_type==='slim'?'active':''}" onclick="AuthPage.selectBodyType('slim',this)">🧍 Mince</div>
-                  <div class="filter-chip ${onboardingData.body_type==='athletic'?'active':''}" onclick="AuthPage.selectBodyType('athletic',this)">🏃 Athlétique</div>
-                  <div class="filter-chip ${onboardingData.body_type==='average'?'active':''}" onclick="AuthPage.selectBodyType('average',this)">🧑 Intermédiaire</div>
-                  <div class="filter-chip ${onboardingData.body_type==='curvy'?'active':''}" onclick="AuthPage.selectBodyType('curvy',this)">🍑 Rondelette</div>
-                  <div class="filter-chip ${onboardingData.body_type==='large'?'active':''}" onclick="AuthPage.selectBodyType('large',this)">🫂 Costaud(e)</div>
-                </div>
-              </div>
-              <div>
-                <label class="input-label">💍 Type de relation recherché</label>
-                <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
-                  <div class="option-card ${onboardingData.relation_type==='serious'?'selected':''}" onclick="AuthPage.selectRelationType('serious',this)" style="display:flex;align-items:center;gap:12px;padding:14px;">
-                    <div style="font-size:24px;">💍</div>
-                    <div><strong>Relation sérieuse</strong><br><small style="color:var(--muted);">Je cherche une relation durable</small></div>
-                  </div>
-                  <div class="option-card ${onboardingData.relation_type==='fun'?'selected':''}" onclick="AuthPage.selectRelationType('fun',this)" style="display:flex;align-items:center;gap:12px;padding:14px;">
-                    <div style="font-size:24px;">💋</div>
-                    <div><strong>Fun / Casual</strong><br><small style="color:var(--muted);">Rencontres sans prise de tête</small></div>
-                  </div>
-                  <div class="option-card ${onboardingData.relation_type==='any'?'selected':''}" onclick="AuthPage.selectRelationType('any',this)" style="display:flex;align-items:center;gap:12px;padding:14px;">
-                    <div style="font-size:24px;">🌟</div>
-                    <div><strong>Peu importe</strong><br><small style="color:var(--muted);">Je veux d'abord voir</small></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style="padding:0 24px 24px;">
-            <button class="btn btn-primary btn-full" onclick="AuthPage.submitRegister()" id="btn-finish">
-              🦋 Créer mon profil
+          <div style="padding:16px 24px 32px;">
+            <button class="btn btn-primary btn-full" style="padding:16px;font-size:16px;" onclick="AuthPage.submitRegister()" id="btn-finish">
+              🔥 C'est parti !
             </button>
           </div>
         </div>
@@ -299,21 +213,21 @@ const AuthPage = (() => {
     render,
 
     showLogin() {
-      document.getElementById('tab-login').style.borderBottomColor = 'var(--pink)';
-      document.getElementById('tab-login').style.color = 'var(--white)';
-      document.getElementById('tab-login').style.fontWeight = '600';
+      document.getElementById('tab-login').style.borderBottomColor = '#D4380D';
+      document.getElementById('tab-login').style.color = '#3D1A00';
+      document.getElementById('tab-login').style.fontWeight = '700';
       document.getElementById('tab-register').style.borderBottomColor = 'transparent';
-      document.getElementById('tab-register').style.color = 'var(--muted)';
+      document.getElementById('tab-register').style.color = '#C4865A';
       document.getElementById('tab-register').style.fontWeight = '500';
       document.getElementById('auth-form-container').innerHTML = renderLoginForm();
     },
 
     showRegister() {
-      document.getElementById('tab-register').style.borderBottomColor = 'var(--pink)';
-      document.getElementById('tab-register').style.color = 'var(--white)';
-      document.getElementById('tab-register').style.fontWeight = '600';
+      document.getElementById('tab-register').style.borderBottomColor = '#D4380D';
+      document.getElementById('tab-register').style.color = '#3D1A00';
+      document.getElementById('tab-register').style.fontWeight = '700';
       document.getElementById('tab-login').style.borderBottomColor = 'transparent';
-      document.getElementById('tab-login').style.color = 'var(--muted)';
+      document.getElementById('tab-login').style.color = '#C4865A';
       document.getElementById('tab-login').style.fontWeight = '500';
       currentStep = 1;
       onboardingData = {};
@@ -329,59 +243,42 @@ const AuthPage = (() => {
 
     nextStep(step) {
       if (step === 1) {
-        const fn = document.getElementById('ob-firstname')?.value.trim();
+        const fn    = document.getElementById('ob-firstname')?.value.trim();
         const day   = document.getElementById('ob-birth-day')?.value;
         const month = document.getElementById('ob-birth-month')?.value;
         const year  = document.getElementById('ob-birth-year')?.value;
         const bd    = (day && month && year) ? `${year}-${month}-${day}` : '';
-        const em = document.getElementById('ob-email')?.value.trim();
-        const pw = document.getElementById('ob-password')?.value;
-        if (!fn) return Toast.error('Prénom requis');
-        if (!bd) return Toast.error('Date de naissance requise');
-        if (!em) return Toast.error('Email requis');
+        const em    = document.getElementById('ob-email')?.value.trim();
+        const pw    = document.getElementById('ob-password')?.value;
+        if (!fn)              return Toast.error('Prénom requis');
+        if (!bd)              return Toast.error('Date de naissance requise');
+        if (!em)              return Toast.error('Email requis');
         if (!pw || pw.length < 8) return Toast.error('Mot de passe : 8 caractères minimum');
         Object.assign(onboardingData, { first_name: fn, birthdate: bd, email: em, password: pw });
       }
-      if (step === 2 && !onboardingData.gender) return Toast.error('Sélectionnez votre genre');
-      if (step === 3 && !onboardingData.looking_for) return Toast.error('Sélectionnez vos préférences');
-      if (step === 4) {
-        const country = document.getElementById('ob-country')?.value;
-        if (!country) return Toast.error('Sélectionnez votre pays');
-        const city = document.getElementById('ob-city')?.value.trim();
-        const interracial = document.getElementById('toggle-interracial')?.classList.contains('on');
-        const countryObj = COUNTRIES.find(c => c.code === country);
-        Object.assign(onboardingData, { country_code: country, country_name: countryObj?.name, city, open_to_interracial: interracial });
-      }
-      if (step === 5) {
-        const bio        = document.getElementById('ob-bio')?.value.trim();
-        const profession = document.getElementById('ob-profession')?.value.trim();
-        Object.assign(onboardingData, { bio, profession });
-        if (!onboardingData.languages?.length) onboardingData.languages = ['fr'];
+      if (step === 2) {
+        if (!onboardingData.gender)      return Toast.error('Sélectionne ton genre');
+        if (!onboardingData.looking_for) return Toast.error('Sélectionne ce que tu cherches');
       }
       currentStep++;
       document.getElementById('auth-form-container').innerHTML = renderOnboardingStep(currentStep);
     },
 
-    selectGender(v) {
+    selectGender(v, el) {
       onboardingData.gender = v;
       document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-      event.currentTarget.classList.add('selected');
+      el.classList.add('selected');
     },
 
-    selectLookingFor(v) {
+    selectLookingFor(v, el) {
       onboardingData.looking_for = v;
-      document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-      event.currentTarget.classList.add('selected');
+      // Ne désélectionne que les cartes "Je cherche" (pas "Mon genre")
+      el.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
     },
 
-    selectBodyType(v, el) {
-      onboardingData.body_type = v;
-      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
-    },
-
-    selectRelationType(v, el) {
-      onboardingData.relation_type = v;
+    selectCountry(v, el) {
+      onboardingData.country_code = v;
       document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
       el.classList.add('selected');
     },
@@ -398,25 +295,14 @@ const AuthPage = (() => {
       }
     },
 
-    toggleLang(v, el) {
-      onboardingData.languages = onboardingData.languages || [];
-      if (onboardingData.languages.includes(v)) {
-        onboardingData.languages = onboardingData.languages.filter(l => l !== v);
-        el.classList.remove('active');
-      } else {
-        onboardingData.languages.push(v);
-        el.classList.add('active');
-      }
-    },
-
     async submitLogin(event) {
       event.preventDefault();
       const form = event.target;
       await Utils.handleForm(form, async () => {
-        const email = form.email.value.trim();
+        const email    = form.email.value.trim();
         const password = form.password.value;
         await AuthService.login(email, password);
-        Toast.success('Bienvenue sur Bizi 228+1 ! 🦋');
+        Toast.success('Bienvenue sur Bizi 228+1 ! 🔥');
         setTimeout(() => App.showApp(), 500);
       });
     },
@@ -424,12 +310,12 @@ const AuthPage = (() => {
     forgotPassword() {
       Modal.show(
         '<div style="display:flex;flex-direction:column;gap:16px;">' +
-          '<p style="font-size:14px;color:var(--muted);">Entrez votre email — vous recevrez un lien de réinitialisation.</p>' +
+          '<p style="font-size:14px;color:#C4865A;">Entrez votre email — vous recevrez un lien de réinitialisation.</p>' +
           '<div class="input-group">' +
             '<label class="input-label">Email</label>' +
             '<input id="forgot-email" type="email" class="input-field" placeholder="votre@email.com">' +
           '</div>' +
-          '<button onclick="AuthPage._doForgotPassword()" style="background:var(--pink);border:none;color:white;padding:14px;border-radius:50px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;">Envoyer le lien</button>' +
+          '<button onclick="AuthPage._doForgotPassword()" style="background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;color:#FFE5B4;padding:14px;border-radius:50px;font-weight:700;cursor:pointer;font-family:Playfair Display,serif;">Envoyer le lien</button>' +
         '</div>', 'Mot de passe oublié');
     },
 
@@ -447,24 +333,29 @@ const AuthPage = (() => {
 
     async demoLogin() {
       AuthService.save({
-        accessToken: 'demo_token',
+        accessToken:  'demo_token',
         refreshToken: 'demo_refresh',
-        user: { id: 1, uuid: 'demo-uuid', email: 'demo@Bizi 228+1.com', first_name: 'Démo', gender: 'man', country_code: 'FR', is_premium: true, coins: 500 }
+        user: { id: 1, uuid: 'demo-uuid', email: 'demo@bizi228.com', first_name: 'Démo', gender: 'man', country_code: 'TG', is_premium: true, coins: 500 }
       });
       Toast.info('Mode démo activé 🎭');
       setTimeout(() => App.showApp(), 500);
     },
 
     async submitRegister() {
+      if (!onboardingData.country_code) return Toast.error('Sélectionne ton pays');
+      const city = document.getElementById('ob-city')?.value.trim();
+      if (city) onboardingData.city = city;
+      onboardingData.looking_for = onboardingData.looking_for || 'all';
+
       const btn = document.getElementById('btn-finish');
-      if (btn) { btn.disabled = true; btn.innerHTML = '<span class="loader-spinner" style="width:18px;height:18px;margin:0 auto;"></span>'; }
+      if (btn) { btn.disabled = true; btn.innerHTML = '⏳ Création...'; }
       try {
         await AuthService.register(onboardingData);
-        Toast.success('Profil créé ! Bienvenue sur Bizi 228+1 🦋');
+        Toast.success('Bienvenue sur Bizi 228+1 🔥');
         setTimeout(() => App.showApp(), 600);
       } catch (err) {
         Toast.error(err.message || 'Erreur lors de la création du compte');
-        if (btn) { btn.disabled = false; btn.innerHTML = '🦋 Créer mon profil'; }
+        if (btn) { btn.disabled = false; btn.innerHTML = '🔥 C\'est parti !'; }
       }
     },
   };
