@@ -128,7 +128,7 @@ const FeedPage = (() => {
     card.id = stackPos === 0 ? 'feed-card' : 'feed-card-bg-' + stackPos;
     card.style.cssText = `
       position:absolute;inset:0;
-      background:linear-gradient(135deg,#2D1F38,#1A0A14);
+      background:linear-gradient(135deg,#8B1A00,#D4380D);
       border-radius:20px;overflow:hidden;
       box-shadow:0 ${8 + stackPos*4}px ${30 + stackPos*10}px rgba(0,0,0,0.4);
       transform: scale(${scale}) translateY(${translateY}px);
@@ -155,7 +155,7 @@ const FeedPage = (() => {
           : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px;">👤</div>`
         }
       </div>
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.15) 50%,transparent 100%);"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(61,26,0,0.90) 0%,rgba(61,26,0,0.15) 50%,transparent 100%);"></div>
 
       ${stackPos === 0 && photos.length > 1 ? `
         <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:20;">

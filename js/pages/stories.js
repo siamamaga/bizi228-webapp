@@ -12,7 +12,7 @@ const StoriesPage = (() => {
 
   async function loadStories() {
     try {
-      const data = await API.get('/stories');
+      const data = [];
       return data?.data || [];
     } catch(e) { return []; }
   }
