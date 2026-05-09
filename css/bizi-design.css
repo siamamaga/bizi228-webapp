@@ -160,3 +160,24 @@ body, html { overflow-y: auto !important; height: auto !important; }
 /* Fix scroll global */
 .app-shell { overflow-y: scroll !important; height: 100vh !important; }
 .page-content { overflow-y: visible !important; }
+
+/* ── Onboarding steps ────────────────────────────────────── */
+.onboarding-step { background: #FFFBF5 !important; min-height: 100vh; }
+.onboarding-content { padding: 24px 24px 0 !important; }
+.onboarding-title { font-family: 'Syne', sans-serif !important; font-size: 24px !important; font-weight: 800 !important; color: #1C1917 !important; margin-bottom: 8px !important; line-height: 1.3 !important; }
+.onboarding-title em { color: #E91E8C !important; font-style: normal !important; }
+.onboarding-desc { color: #78716C !important; font-size: 14px !important; margin-bottom: 20px !important; }
+.input-label { color: #1C1917 !important; font-weight: 600 !important; font-size: 13px !important; margin-bottom: 6px !important; display: block !important; }
+.header-btn { background: #F5F0EB !important; color: #1C1917 !important; border: none !important; border-radius: 50% !important; width: 36px !important; height: 36px !important; font-size: 16px !important; cursor: pointer !important; }
+.progress-bar { background: #E7E5E4 !important; border-radius: 50px !important; height: 6px !important; overflow: hidden !important; }
+.progress-bar-fill { background: linear-gradient(90deg, #C2185B, #E91E8C, #FF6B00) !important; height: 100% !important; border-radius: 50px !important; transition: width 0.4s ease !important; }
+.option-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; margin-top: 8px !important; }
+.option-card { background: #FFFFFF !important; border: 2px solid #E7E5E4 !important; border-radius: 16px !important; padding: 20px 12px !important; text-align: center !important; cursor: pointer !important; transition: all 0.2s !important; }
+.option-card:hover { border-color: #E91E8C !important; box-shadow: 0 4px 16px rgba(233,30,140,0.1) !important; }
+.option-card.selected { border-color: #E91E8C !important; background: #FFF0F6 !important; box-shadow: 0 4px 16px rgba(233,30,140,0.15) !important; }
+.option-card-icon { font-size: 32px !important; margin-bottom: 8px !important; }
+.option-card-label { font-family: 'Plus Jakarta Sans', sans-serif !important; font-weight: 600 !important; font-size: 13px !important; color: #1C1917 !important; }
+.option-card.selected .option-card-label { color: #E91E8C !important; }
+.toggle-row { display: flex !important; align-items: center !important; justify-content: space-between !important; background: #FFFFFF !important; border: 1px solid #E7E5E4 !important; border-radius: 14px !important; padding: 14px 16px !important; }
+.toggle-label { color: #1C1917 !important; font-weight: 600 !important; font-size: 14px !important; }
+.btn-full { width: 100% !important; padding: 16px !important; font-size: 16px !important; }

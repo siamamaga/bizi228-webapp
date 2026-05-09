@@ -67,7 +67,7 @@ const AuthPage = (() => {
             <label class="input-label">Mot de passe</label>
             <div style="position:relative;">
               <input name="password" id="login-password" type="password" class="input-field" placeholder="••••••••" autocomplete="current-password" required style="padding-right:48px;">
-              <button type="button" onclick="AuthPage.togglePassword('login-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:rgba(255,255,255,0.5);padding:4px;">👁️</button>
+              <button type="button" onclick="AuthPage.togglePassword('login-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#A8A29E;padding:4px;">👁️</button>
             </div>
           </div>
           <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px;">
@@ -95,10 +95,10 @@ const AuthPage = (() => {
           <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
             ${step > 1 ? `<button onclick="AuthPage.prevStep()" class="header-btn">←</button>` : ''}
             <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:var(--muted);">${step}/${TOTAL_STEPS}</span>
+            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
           </div>
           <div class="onboarding-content">
-            <div class="onboarding-title">Bonjour ! Je suis <em>ravie</em> de vous accueillir 🦋</div>
+            <div class="onboarding-title">Bienvenue chez Bizi 228+1 🔥</div>
             <p class="onboarding-desc">Commençons par votre identité. Ces informations ne seront jamais partagées.</p>
             <div style="display:flex;flex-direction:column;gap:14px;">
               <div class="input-group">
@@ -121,7 +121,7 @@ const AuthPage = (() => {
                 <label class="input-label">Mot de passe *</label>
                 <div style="position:relative;">
                   <input id="ob-password" type="password" class="input-field" placeholder="Minimum 8 caractères" style="padding-right:48px;">
-                  <button type="button" onclick="AuthPage.togglePassword('ob-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:rgba(255,255,255,0.5);padding:4px;">👁️</button>
+                  <button type="button" onclick="AuthPage.togglePassword('ob-password',this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#A8A29E;padding:4px;">👁️</button>
                 </div>
               </div>
             </div>
@@ -136,14 +136,14 @@ const AuthPage = (() => {
           <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
             <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
             <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:var(--muted);">${step}/${TOTAL_STEPS}</span>
+            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
           </div>
           <div class="onboarding-content">
             <div class="onboarding-title">Je suis...</div>
             <p class="onboarding-desc">Sélectionnez votre genre.</p>
             <div class="option-grid">
               ${[{v:'man',icon:'👨',l:'Homme'},{v:'woman',icon:'👩',l:'Femme'},{v:'non_binary',icon:'🧑',l:'Non-binaire'},{v:'other',icon:'💫',l:'Autre'}]
-                .map(g => `<div class="option-card ${onboardingData.gender===g.v?'selected':''}" onclick="AuthPage.selectGender('${g.v}')">
+                .map(g => `<div class="option-card \" onclick="AuthPage.selectGender('${g.v}')">
                   <div class="option-card-icon">${g.icon}</div>
                   <div class="option-card-label">${g.l}</div>
                 </div>`).join('')}
@@ -159,7 +159,7 @@ const AuthPage = (() => {
           <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
             <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
             <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:var(--muted);">${step}/${TOTAL_STEPS}</span>
+            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
           </div>
           <div class="onboarding-content">
             <div class="onboarding-title">Je recherche...</div>
@@ -182,7 +182,7 @@ const AuthPage = (() => {
           <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
             <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
             <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:var(--muted);">${step}/${TOTAL_STEPS}</span>
+            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
           </div>
           <div class="onboarding-content">
             <div class="onboarding-title">D'où venez-vous ? 🌍</div>
@@ -216,7 +216,7 @@ const AuthPage = (() => {
           <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
             <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
             <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:${(step/TOTAL_STEPS)*100}%"></div></div>
-            <span style="font-size:12px;color:var(--muted);">${step}/${TOTAL_STEPS}</span>
+            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
           </div>
           <div class="onboarding-content">
             <div class="onboarding-title">Parlez-nous de <em>vous</em> ✨</div>
@@ -249,7 +249,7 @@ const AuthPage = (() => {
           <div style="padding:20px 24px 0;display:flex;align-items:center;gap:12px;">
             <button onclick="AuthPage.prevStep()" class="header-btn">←</button>
             <div class="progress-bar" style="flex:1;"><div class="progress-bar-fill" style="width:100%"></div></div>
-            <span style="font-size:12px;color:var(--muted);">${step}/${TOTAL_STEPS}</span>
+            <span style="font-size:12px;color:#78716C;">${step}/${TOTAL_STEPS}</span>
           </div>
           <div class="onboarding-content">
             <div class="onboarding-title">Vos préférences 💫</div>
