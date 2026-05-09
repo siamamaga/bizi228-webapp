@@ -1,0 +1,162 @@
+/* ═══════════════════════════════════════════════════════════
+   BIZI 228+1 — Design System v1.0
+   Afro Sunset · Fond crème · Syne + Plus Jakarta Sans
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --pink:#E91E8C;--pink-d:#C2185B;--pink-light:#FF6B35;--pink-pale:#FFF0F6;
+  --pink-glow:rgba(233,30,140,0.12);--gold:#F59E0B;--green:#16A34A;--red:#EF4444;
+  --bg:#FFFBF5;--bg2:#F5F0EB;--card:#FFFFFF;--surface:#FFFFFF;--dark:#FFFBF5;
+  --charcoal:#F5F0EB;--mid:#57534E;--black:#1C1917;--text:#1C1917;
+  --muted:#78716C;--border:#E7E5E4;--white:#FFFFFF;
+  --gradient:linear-gradient(145deg,#C2185B 0%,#E91E8C 50%,#FF6B00 100%);
+  --shadow:0 4px 20px rgba(0,0,0,0.07);
+  --shadow-pink:0 4px 20px rgba(233,30,140,0.3);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.08);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{background:#FFFBF5 !important}
+body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif !important;background:#FFFBF5 !important;color:#1C1917 !important;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif !important;color:#1C1917 !important;font-weight:800 !important}
+.app-shell{background:#FFFBF5 !important}
+.page,.page-wrap{background:#FFFBF5 !important;color:#1C1917 !important}
+
+.bottom-nav{background:rgba(255,251,245,0.97) !important;border-top:1px solid #E7E5E4 !important;backdrop-filter:blur(16px) !important}
+.nav-item{color:#A8A29E !important}
+.nav-item.active,.nav-item.active .nav-label{color:#E91E8C !important}
+
+.page-header,.top-header,.app-header{background:rgba(255,251,245,0.97) !important;border-bottom:1px solid #E7E5E4 !important;backdrop-filter:blur(16px) !important;color:#1C1917 !important}
+.page-header h1,.app-title{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#1C1917 !important}
+
+.loader-wrap,.loader-screen{background:linear-gradient(145deg,#C2185B 0%,#E91E8C 50%,#FF6B00 100%) !important}
+.loader-logo img{border-radius:20px !important;box-shadow:0 8px 32px rgba(0,0,0,0.2) !important}
+.loader-name{font-family:'Syne',sans-serif !important;font-size:28px !important;font-weight:800 !important;color:#FFFFFF !important}
+.loader-sub{color:rgba(255,255,255,0.78) !important}
+.spinner{border-color:rgba(233,30,140,0.2) !important;border-top-color:#E91E8C !important}
+
+.input-field,input[type="text"],input[type="email"],input[type="password"],input[type="tel"],input[type="number"],input[type="search"],textarea,select{background:#F5F0EB !important;color:#1C1917 !important;border:1.5px solid transparent !important;border-radius:14px !important;font-family:'Plus Jakarta Sans',sans-serif !important;font-size:15px !important;transition:all 0.2s !important}
+.input-field:focus,input:focus,textarea:focus,select:focus{background:#FFFFFF !important;border-color:#E91E8C !important;box-shadow:0 0 0 3px rgba(233,30,140,0.1) !important;outline:none !important}
+.input-field::placeholder,input::placeholder,textarea::placeholder{color:#A8A29E !important}
+select option{background:#FFFFFF !important;color:#1C1917 !important}
+
+.btn-primary,button.btn-primary{background:linear-gradient(145deg,#C2185B,#E91E8C,#FF6B00) !important;color:#FFFFFF !important;border:none !important;border-radius:50px !important;font-family:'Syne',sans-serif !important;font-weight:700 !important;box-shadow:0 4px 20px rgba(233,30,140,0.35) !important;transition:transform 0.15s,box-shadow 0.15s !important}
+.btn-primary:hover{transform:translateY(-1px) !important;box-shadow:0 8px 28px rgba(233,30,140,0.45) !important}
+.btn-secondary,button.btn-secondary{background:#FFFFFF !important;color:#1C1917 !important;border:1.5px solid #E7E5E4 !important;border-radius:50px !important}
+.btn-outline,.btn-demo{background:rgba(233,30,140,0.08) !important;color:#E91E8C !important;border:1.5px solid rgba(233,30,140,0.2) !important;border-radius:50px !important}
+
+.card,.match-card,.msg-preview,.settings-row,.list-item,.option-item{background:#FFFFFF !important;border:1px solid #E7E5E4 !important;border-radius:16px !important;color:#1C1917 !important;box-shadow:0 2px 12px rgba(0,0,0,0.04) !important}
+.card-title,.item-name,.match-name{font-family:'Syne',sans-serif !important;font-weight:700 !important;color:#1C1917 !important}
+.card-sub,.item-sub,.match-last{color:#78716C !important}
+
+.chat-bg,.chat-page{background:#F5F0EB !important}
+.msg-bubble{border-radius:18px !important;font-family:'Plus Jakarta Sans',sans-serif !important}
+.chat-message.sent .msg-bubble,.msg-bubble.sent{background:linear-gradient(145deg,#C2185B,#E91E8C) !important;color:#FFFFFF !important}
+.chat-message.recv .msg-bubble,.msg-bubble.recv{background:#FFFFFF !important;color:#1C1917 !important;border:1px solid #E7E5E4 !important}
+.chat-header{background:rgba(255,251,245,0.97) !important;border-bottom:1px solid #E7E5E4 !important}
+.chat-name{font-family:'Syne',sans-serif !important;font-weight:700 !important;color:#1C1917 !important}
+.msg-input-bar{background:rgba(255,251,245,0.97) !important;border-top:1px solid #E7E5E4 !important}
+.msg-input{background:#F5F0EB !important;border-radius:50px !important;color:#1C1917 !important}
+.send-btn{background:linear-gradient(135deg,#C2185B,#E91E8C) !important;color:white !important;box-shadow:0 2px 10px rgba(233,30,140,0.35) !important}
+
+.profile-banner{background:linear-gradient(145deg,#C2185B,#E91E8C,#FF6B00) !important}
+.profile-name,.user-name{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#1C1917 !important}
+.profile-location,.user-sub{color:#78716C !important}
+.stat-number{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#E91E8C !important}
+.stat-label{color:#78716C !important}
+
+.tag,.chip,.interest-tag,.badge-tag{background:#FFF0F6 !important;color:#C2185B !important;border:1px solid rgba(233,30,140,0.2) !important;border-radius:50px !important;font-family:'Plus Jakarta Sans',sans-serif !important;font-weight:600 !important;font-size:12px !important}
+.badge-online{background:#16A34A !important;color:white !important}
+.badge-premium,.premium-tag{background:linear-gradient(135deg,#F59E0B,#FF6B35) !important;color:white !important;font-weight:700 !important}
+
+.btn-like{background:linear-gradient(145deg,#C2185B,#E91E8C) !important;color:white !important;box-shadow:0 4px 20px rgba(233,30,140,0.4) !important}
+.btn-dislike,.btn-pass{background:#FFFFFF !important;color:#57534E !important;border:1.5px solid #E7E5E4 !important;box-shadow:0 2px 12px rgba(0,0,0,0.08) !important}
+.btn-super{background:linear-gradient(135deg,#F59E0B,#FF6B35) !important;color:white !important;box-shadow:0 4px 16px rgba(245,158,11,0.35) !important}
+
+.story-ring,.story-border{background:linear-gradient(145deg,#C2185B,#E91E8C,#FF6B00) !important}
+
+.tab-bar,.tabs-wrap{background:#F5F0EB !important;border-radius:14px !important;padding:4px !important}
+.tab{color:#78716C !important;font-family:'Plus Jakarta Sans',sans-serif !important}
+.tab.active{background:#FFFFFF !important;color:#E91E8C !important;box-shadow:0 2px 10px rgba(0,0,0,0.07) !important;border-radius:10px !important;font-weight:600 !important}
+
+.section-title,.feed-section-title{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#1C1917 !important}
+
+.settings-page,.settings-group{background:#FFFBF5 !important}
+.settings-section-title{color:#E91E8C !important;font-weight:700 !important;font-size:11px !important;text-transform:uppercase !important;letter-spacing:0.8px !important}
+.settings-row{background:#FFFFFF !important;border-bottom:1px solid #F5F0EB !important;border-radius:0 !important;box-shadow:none !important;border:none !important}
+.settings-label{color:#1C1917 !important;font-weight:500 !important}
+.settings-value,.settings-arrow{color:#A8A29E !important}
+
+.modal,.bottom-sheet,.drawer-content{background:#FFFFFF !important;border-radius:24px 24px 0 0 !important;color:#1C1917 !important}
+.modal-title,.sheet-title{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#1C1917 !important}
+.modal-overlay,.sheet-overlay{background:rgba(28,25,23,0.55) !important;backdrop-filter:blur(4px) !important}
+.sheet-handle{background:#E7E5E4 !important}
+
+.plan-card,.pricing-card{background:#FFFFFF !important;border:2px solid #E7E5E4 !important;border-radius:20px !important;color:#1C1917 !important}
+.plan-card.popular,.pricing-card.featured{border-color:#E91E8C !important;box-shadow:0 8px 32px rgba(233,30,140,0.15) !important}
+.plan-name{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#1C1917 !important}
+.plan-price{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#E91E8C !important;font-size:28px !important}
+.plan-feature{color:#57534E !important}
+.popular-badge{background:linear-gradient(135deg,#C2185B,#E91E8C) !important;color:white !important;border-radius:50px !important;font-weight:700 !important}
+
+.match-overlay,.match-popup{background:linear-gradient(145deg,#C2185B 0%,#E91E8C 50%,#FF6B00 100%) !important}
+.match-title{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#FFFFFF !important}
+.match-sub{color:rgba(255,255,255,0.85) !important}
+
+.toast{background:#FFFFFF !important;color:#1C1917 !important;border-left:4px solid #E91E8C !important;border-radius:14px !important;box-shadow:0 8px 32px rgba(0,0,0,0.12) !important}
+.toast.success{border-left-color:#16A34A !important}
+.toast.error{border-left-color:#EF4444 !important}
+.toast.warning{border-left-color:#F59E0B !important}
+
+.text-pink,.text-primary{color:#E91E8C !important}
+.text-muted,.text-secondary{color:#78716C !important}
+.text-dark{color:#1C1917 !important}
+.text-gold{color:#F59E0B !important}
+.text-green{color:#16A34A !important}
+.text-red{color:#EF4444 !important}
+
+hr,.divider{border-color:#E7E5E4 !important}
+.link,a.link{color:#E91E8C !important;font-weight:600 !important}
+::-webkit-scrollbar{width:0;height:0}
+
+.onboarding-page{background:#FFFBF5 !important}
+.onboarding-title{font-family:'Syne',sans-serif !important;font-weight:800 !important;color:#1C1917 !important}
+.onboarding-sub{color:#78716C !important}
+.progress-bar{background:#F5F0EB !important}
+.progress-fill{background:var(--gradient) !important}
+
+/* Force textes visibles sur fond clair */
+.nav-label { color: #A8A29E !important; }
+.nav-item.active .nav-label { color: #E91E8C !important; }
+.match-name, .match-last { color: #1C1917 !important; }
+.match-time { color: #A8A29E !important; }
+.msg-time { color: #A8A29E !important; }
+.input-field::placeholder { color: #A8A29E !important; }
+.btn-dislike { background: #FFFFFF !important; border: 1.5px solid #E7E5E4 !important; color: #57534E !important; }
+.feed-title, .feed-subtitle { color: #1C1917 !important; }
+.story-name { color: #1C1917 !important; }
+.filter-btn { background: #F5F0EB !important; color: #57534E !important; }
+.filter-btn.active { background: #E91E8C !important; color: white !important; }
+.action-btn-label { color: #57534E !important; }
+.empty-title, .empty-sub { color: #57534E !important; }
+.section-label { color: #78716C !important; }
+
+.desktop-sidebar { background: #F5F0EB !important; }
+.desktop-sidebar img { opacity: 1 !important; }
+.auth-sidebar, .login-sidebar { background: #F5F0EB !important; }
+
+/* Fix scroll auth page */
+body, html { overflow-y: auto !important; height: auto !important; }
+.app-shell { overflow-y: auto !important; height: auto !important; min-height: 100vh !important; }
+.page { overflow-y: auto !important; height: auto !important; }
+#app { overflow: visible !important; height: auto !important; }
+
+/* Fix scroll global */
+.app-shell { overflow-y: scroll !important; height: 100vh !important; }
+.page-content { overflow-y: visible !important; }
+
+/* Fix scroll global */
+.app-shell { overflow-y: scroll !important; height: 100vh !important; }
+.page-content { overflow-y: visible !important; }

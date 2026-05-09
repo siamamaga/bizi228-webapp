@@ -29,46 +29,36 @@
 <link rel="stylesheet" href="css/components.css?v=202604301500">
 <style>
 *{box-sizing:border-box;}
-#desktop-wrapper{display:flex;height:100vh;background:#0D0A14;justify-content:center;align-items:stretch;overflow:hidden;}
-.desktop-sidebar{flex:1;position:relative;overflow:hidden;background:#0D0A14;min-height:100vh;}
-.desktop-sidebar img.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;background:#0D0A14;opacity:0;transition:opacity 2.5s ease;}
+#desktop-wrapper{display:flex;min-height:100vh;height:auto;background:#F5F0EB;justify-content:center;align-items:stretch;overflow:hidden;}
+.desktop-sidebar{flex:1;position:relative;overflow:hidden;background:#F5F0EB;min-height:100vh;min-height:100vh;}
+.desktop-sidebar img.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;background:#F5F0EB;opacity:0;transition:opacity 2.5s ease;}
 .desktop-sidebar img.slide.active{opacity:1;}
 .sidebar-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;}
-#sidebar-left .sidebar-overlay{background:linear-gradient(to right,transparent,rgba(13,10,20,0.4));}
-#sidebar-right .sidebar-overlay{background:linear-gradient(to left,transparent,rgba(13,10,20,0.4));}
+#sidebar-left .sidebar-overlay{background:linear-gradient(to right,transparent,rgba(245,240,235,0.1));}
+#sidebar-right .sidebar-overlay{background:linear-gradient(to left,transparent,rgba(245,240,235,0.1));}
 .sidebar-brand{position:absolute;bottom:40px;left:0;right:0;text-align:center;z-index:3;pointer-events:none;padding:0 16px;}
 .sidebar-brand strong{font-family:'Playfair Display',serif;font-size:18px;color:#E8317A;display:block;}
-.sidebar-brand p{font-family:'Outfit',sans-serif;font-size:12px;color:rgba(255,255,255,0.6);margin:4px 0 0;}
+.sidebar-brand p{font-family:'Outfit',sans-serif;font-size:12px;color:#57534E;margin:4px 0 0;}
 #app{flex:0 0 480px;max-width:480px;width:100%;position:relative;z-index:10;box-shadow:0 0 80px rgba(0,0,0,0.9);}
 @media(max-width:960px){.desktop-sidebar{display:none;}#app{flex:1;max-width:100%;}#desktop-wrapper{display:block;}}
 </style>
+<link rel="stylesheet" href="/css/bizi-design.css">
 </head>
 <body>
 
   <div id="app-loader">
-    <div class="loader-logo">
-      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-        <rect width="56" height="56" rx="16" fill="url(#lg)"/>
-        <defs><linearGradient id="lg" x1="0" y1="0" x2="56" y2="56"><stop stop-color="#E8317A"/><stop offset="1" stop-color="#C41F65"/></linearGradient></defs>
-        <path d="M28 36 C22 28, 8 26, 5 31 C2 36, 11 44, 23 39 C25.5 38, 27 37, 28 36Z" fill="white" opacity="0.9"/>
-        <path d="M28 36 C24 30, 12 22, 8 25 C4 28, 10 38, 22 37 C25 37, 27 36.5, 28 36Z" fill="white" opacity="0.6"/>
-        <path d="M28 36 C34 28, 48 26, 51 31 C54 36, 45 44, 33 39 C30.5 38, 29 37, 28 36Z" fill="black" opacity="0.85"/>
-        <path d="M28 36 C32 30, 44 22, 48 25 C52 28, 46 38, 34 37 C31 37, 29 36.5, 28 36Z" fill="black" opacity="0.55"/>
-        <ellipse cx="28" cy="36" rx="1.5" ry="3" fill="rgba(255,255,255,0.8)"/>
-      </svg>
-      <span>Bizi 228+1</span>
-    </div>
+    <div class="loader-logo"><img src="/icons/bizi-logo.jpg" style="width:220px;height:220px;object-fit:contain;border-radius:0;box-shadow:none;" alt="Bizi 228+1"></div>
     <div class="loader-spinner"></div>
   </div>
 
   <div id="desktop-wrapper">
 
-    <div class="desktop-sidebar" id="sidebar-left">
+    <div class="desktop-sidebar" id="sidebar-left" style="background:url(/icons/girl1.jpg) center top/cover no-repeat;">
       <div id="slider-left"></div>
       <div class="sidebar-overlay"></div>
       <div class="sidebar-brand">
         <strong>🦋 Bizi 228+1</strong>
-        <p>L'amour n'a pas de frontières</p>
+        <p>Connecte-toi au plaisir sans limite.</p>
       </div>
     </div>
 
@@ -139,12 +129,12 @@
       </div>
     </div>
 
-    <div class="desktop-sidebar" id="sidebar-right">
+    <div class="desktop-sidebar" id="sidebar-right" style="background:url(/icons/guy1.png) center top/cover no-repeat;">
       <div id="slider-right"></div>
       <div class="sidebar-overlay"></div>
       <div class="sidebar-brand">
-        <strong>50+ pays connectés 🌍</strong>
-        <p>Des milliers de couples heureux 💕</p>
+        <strong>BENIN, TOGO, NIGERIA, GHANA, CÔTE D'IVOIRE... connectés</strong>
+        <p>« Tes nuits méritent mieux que l'ennui. »</p>
       </div>
     </div>
 
@@ -178,30 +168,24 @@
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.getRegistrations().then(function(r) { r.forEach(function(s){s.unregister();}); });
   }
-  const SLIDES = [
-    'https://res.cloudinary.com/dt6ukj8yj/image/upload/v1777898489/ChatGPT_Image_4_mai_2026_14_13_19_1_eoggjm.png',
-    'https://res.cloudinary.com/dt6ukj8yj/image/upload/v1777898487/ChatGPT_Image_4_mai_2026_14_13_19_2_oq175c.png',
-    'https://res.cloudinary.com/dt6ukj8yj/image/upload/v1777898486/ChatGPT_Image_4_mai_2026_14_22_27_ccknuv.png',
-    'https://res.cloudinary.com/dt6ukj8yj/image/upload/v1777898486/ChatGPT_Image_4_mai_2026_14_22_21_hoqta2.png',
-    'https://res.cloudinary.com/dt6ukj8yj/image/upload/v1777898485/ChatGPT_Image_4_mai_2026_14_22_35_zt8re6.png'
-  ];
+  const SLIDES_LEFT = ['/icons/girl1.jpg', '/icons/girl2.png'];
+  const SLIDES_RIGHT = ['/icons/guy1.png', '/icons/guy2.png'];
   function initSidebars() {
-    [['slider-left',0],['slider-right',2]].forEach(function(pair) {
+    [['slider-left', SLIDES_LEFT],['slider-right', SLIDES_RIGHT]].forEach(function(pair) {
       var el = document.getElementById(pair[0]);
       if (!el) return;
-      var imgs = SLIDES.map(function(src) {
+      var imgs = pair[1].map(function(src) {
         var img = document.createElement('img');
         img.src = src; img.className = 'slide'; img.alt = 'Bizi 228+1';
         el.appendChild(img); return img;
       });
-      var cur = pair[1] % imgs.length;
+      var cur = 0;
       imgs[cur].classList.add('active');
-      var delay = pair[0]==="slider-left" ? 6000 : 8500;
       setInterval(function() {
         imgs[cur].classList.remove('active');
         cur = (cur+1) % imgs.length;
         imgs[cur].classList.add('active');
-      }, delay);
+      }, 6000);
     });
   }
   document.addEventListener('DOMContentLoaded', initSidebars);

@@ -30,7 +30,7 @@
   color: var(--white);
   box-shadow: var(--shadow-pink);
 }
-.btn-primary:hover { box-shadow: 0 12px 40px rgba(232,49,122,0.5); transform: translateY(-1px); }
+.btn-primary:hover { box-shadow: 0 12px 40px rgba(233,30,140,0.5); transform: translateY(-1px); }
 
 .btn-secondary {
   background: rgba(255,255,255,0.07);
@@ -59,7 +59,7 @@
   box-shadow: var(--shadow-lg);
 }
 
-.btn-dislike { background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.12); color: white; }
+.btn-dislike { background: rgba(255,255,255,0.07); border: 1.5px solid rgba(255,255,255,0.12); color: #1C1917; }
 .btn-like    { background: linear-gradient(135deg, var(--pink), #C41F65); box-shadow: var(--shadow-pink); }
 .btn-super   { background: linear-gradient(135deg, #F59E0B, #D97706); box-shadow: 0 8px 28px rgba(245,158,11,0.4); }
 
@@ -92,10 +92,10 @@
   transition: border-color 0.2s, background 0.2s;
   -webkit-appearance: none;
 }
-.input-field::placeholder { color: rgba(255,255,255,0.25); }
+.input-field::placeholder { color: #78716C; }
 .input-field:focus {
-  border-color: rgba(232,49,122,0.6);
-  background: rgba(232,49,122,0.05);
+  border-color: rgba(233,30,140,0.6);
+  background: rgba(233,30,140,0.05);
 }
 .input-field.error { border-color: rgba(239,68,68,0.6); }
 
@@ -159,15 +159,15 @@ select.input-field option { background: var(--charcoal); }
 }
 .profile-card-meta {
   font-size: 14px;
-  color: rgba(255,255,255,0.75);
+  color: #78716C;
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 .profile-card-badge {
-  background: rgba(232,49,122,0.25);
-  border: 1px solid rgba(232,49,122,0.4);
+  background: rgba(233,30,140,0.25);
+  border: 1px solid rgba(233,30,140,0.4);
   color: var(--pink-light);
   font-size: 11px;
   padding: 2px 8px;
@@ -234,10 +234,10 @@ select.input-field option { background: var(--charcoal); }
 .match-info { flex: 1; overflow: hidden; }
 .match-name { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
 .match-preview { font-size: 13px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.match-time { font-size: 11px; color: rgba(255,255,255,0.3); flex-shrink: 0; text-align: right; }
+.match-time { font-size: 11px; color: #78716C; flex-shrink: 0; text-align: right; }
 .match-unread-badge {
   background: var(--pink);
-  color: white;
+  color: #1C1917;
   font-size: 11px;
   font-weight: 700;
   min-width: 20px; height: 20px;
@@ -273,9 +273,9 @@ select.input-field option { background: var(--charcoal); }
   line-height: 1.5;
   word-break: break-word;
 }
-.chat-message.sent  .msg-bubble { background: var(--pink); color: white; border-bottom-right-radius: 4px; }
+.chat-message.sent  .msg-bubble { background: var(--pink); color: #1C1917; border-bottom-right-radius: 4px; }
 .chat-message.recv  .msg-bubble { background: var(--surface); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
-.msg-time { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 4px; text-align: right; }
+.msg-time { font-size: 10px; color: #78716C; margin-top: 4px; text-align: right; }
 .chat-message.recv .msg-time { text-align: left; }
 
 .chat-input-bar {
@@ -303,19 +303,19 @@ select.input-field option { background: var(--charcoal); }
   max-height: 120px;
   transition: border-color 0.2s;
 }
-.chat-input-field:focus { border-color: rgba(232,49,122,0.5); }
+.chat-input-field:focus { border-color: rgba(233,30,140,0.5); }
 .chat-send-btn {
   width: 42px; height: 42px;
   background: var(--pink);
   border: none;
   border-radius: 50%;
-  color: white;
+  color: #1C1917;
   font-size: 18px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   transition: all 0.2s;
-  box-shadow: 0 4px 14px rgba(232,49,122,0.4);
+  box-shadow: 0 4px 14px rgba(233,30,140,0.4);
 }
 .chat-send-btn:active { transform: scale(0.9); }
 .typing-indicator {
@@ -335,13 +335,13 @@ select.input-field option { background: var(--charcoal); }
 .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
 .badge-verified { background: rgba(34,197,94,0.15); color: #4ADE80; }
 .badge-premium  { background: rgba(201,168,76,0.15); color: var(--gold); }
-.badge-pink     { background: rgba(232,49,122,0.15); color: var(--pink-light); }
+.badge-pink     { background: rgba(233,30,140,0.15); color: var(--pink-light); }
 .badge-online   { background: rgba(34,197,94,0.15); color: #4ADE80; }
 
 /* ── SÉPARATEUR ──────────────────────────────── */
 .divider {
   display: flex; align-items: center; gap: 14px;
-  color: rgba(255,255,255,0.2); font-size: 12px;
+  color: #78716C; font-size: 12px;
   margin: 8px 0;
 }
 .divider::before, .divider::after { content:''; flex:1; height:1px; background: var(--border); }
@@ -357,7 +357,7 @@ select.input-field option { background: var(--charcoal); }
   width: 100%; height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid rgba(232,49,122,0.4);
+  border: 3px solid rgba(233,30,140,0.4);
   background: var(--surface);
   display: flex; align-items: center; justify-content: center;
   font-size: 48px;
@@ -475,8 +475,8 @@ select.input-field option { background: var(--charcoal); }
   flex-shrink: 0;
 }
 .filter-chip.active {
-  background: rgba(232,49,122,0.15);
-  border-color: rgba(232,49,122,0.4);
+  background: rgba(233,30,140,0.15);
+  border-color: rgba(233,30,140,0.4);
   color: var(--pink-light);
 }
 
@@ -520,11 +520,11 @@ select.input-field option { background: var(--charcoal); }
   text-align: center;
 }
 .option-card:active { transform: scale(0.97); }
-.option-card.selected { background: rgba(232,49,122,0.12); border-color: rgba(232,49,122,0.5); }
+.option-card.selected { background: rgba(233,30,140,0.12); border-color: rgba(233,30,140,0.5); }
 .option-card-icon { font-size: 28px; margin-bottom: 8px; }
 .option-card-label { font-size: 14px; font-weight: 500; }
 
-.match-name { font-size:15px; font-weight:600; color:white !important; }
+.match-name { font-size:15px; font-weight:600; color: #1C1917 !important; }
 .match-preview { font-size:13px; color:var(--muted); }
 
 

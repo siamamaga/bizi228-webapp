@@ -1,23 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 /* ═══════════════════════════════════════════════
    Bizi 228+1 — CSS Principal
    app.css
 ═══════════════════════════════════════════════ */
 
 :root {
-  --pink:        #E8317A;
-  --pink-light:  #FF6FAD;
-  --pink-pale:   #FFF0F6;
-  --pink-glow:   rgba(232,49,122,0.18);
-  --black:       #0A080B;
-  --dark:        #140F17;
-  --charcoal:    #1E1723;
-  --mid:         #2D2435;
-  --surface:     #241C2B;
-  --border:      rgba(255,255,255,0.08);
+  --pink:        #E91E8C;
+  --pink-light:  #FF6B35;
+  --pink-pale:   #FFF5F9;
+  --pink-glow:   rgba(233,30,140,0.18);
+  --black:       #1C1917;
+  --dark:        #FFFBF5;
+  --charcoal:    #F5F0EB;
+  --mid:         #57534E;
+  --surface:     #FFFFFF;
+  --border:      #E7E5E4;
   --white:       #FFFFFF;
-  --muted:       rgba(255,255,255,0.45);
-  --text:        rgba(255,255,255,0.87);
-  --gold:        #C9A84C;
+  --muted:       rgba(28,25,23,0.45);
+  --text:        rgba(28,25,23,0.87);
+  --gold:        #FFD700;
   --green:       #22C55E;
   --red:         #EF4444;
 
@@ -32,7 +34,7 @@
   --ease:        cubic-bezier(0.22, 1, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --shadow-pink: 0 8px 32px rgba(232,49,122,0.35);
+  --shadow-pink: 0 8px 32px rgba(233,30,140,0.35);
   --shadow-lg:   0 20px 60px rgba(0,0,0,0.5);
 }
 
@@ -42,7 +44,7 @@ html { height: 100%; }
 
 body {
   height: 100%;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   background: var(--dark);
   color: var(--text);
   -webkit-tap-highlight-color: transparent;
@@ -140,7 +142,7 @@ body {
 /* ── BOTTOM NAV ──────────────────────────────── */
 .bottom-nav {
   height: var(--nav-h);
-  background: rgba(20,15,23,0.95);
+  background: rgba(255,251,245,0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid var(--border);
@@ -314,7 +316,7 @@ body {
   border: none !important;
   outline: none !important;
   background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.6);
+  color: #57534E;
   font-family: 'Outfit', sans-serif;
   font-size: 13px;
   font-weight: 500;

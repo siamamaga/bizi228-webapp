@@ -26,27 +26,21 @@ const AuthPage = (() => {
   function render() {
     const view = document.getElementById('view-auth');
     view.innerHTML = `
-      <div style="min-height:100vh;background:var(--dark);display:flex;flex-direction:column;">
+      <div style="min-height:100vh;background:#FFFBF5;display:flex;flex-direction:column;overflow-y:scroll;-webkit-overflow-scrolling:touch;">
         <div style="padding:56px 24px 0;text-align:center;">
-          <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--pink),#C41F65);border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 8px 28px rgba(232,49,122,0.4);">
-            <svg width="40" height="40" viewBox="0 0 56 56" fill="none">
-              <path d="M28 36 C22 28, 8 26, 5 31 C2 36, 11 44, 23 39 C25.5 38, 27 37, 28 36Z" fill="white" opacity="0.9"/>
-              <path d="M28 36 C24 30, 12 22, 8 25 C4 28, 10 38, 22 37 C25 37, 27 36.5, 28 36Z" fill="white" opacity="0.6"/>
-              <path d="M28 36 C34 28, 48 26, 51 31 C54 36, 45 44, 33 39 C30.5 38, 29 37, 28 36Z" fill="black" opacity="0.85"/>
-              <path d="M28 36 C32 30, 44 22, 48 25 C52 28, 46 38, 34 37 C31 37, 29 36.5, 28 36Z" fill="black" opacity="0.55"/>
-            </svg>
+          <div style="margin:0 auto 8px;"><img src="/icons/bizi-logo.jpg" style="width:280px;height:280px;object-fit:contain;" alt="Bizi 228+1">
           </div>
-          <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:6px;">Bizi 228+1</h1>
-          <p style="font-size:14px;color:var(--muted);">L'amour n'a pas de frontières 🌍</p>
+          
+          <p style="font-size:15px;font-weight:700;color:#1C1917;font-family:Syne,sans-serif;margin-top:8px;">Tu pensais avoir tout vu ? Attends d'entrer ici.</p>
         </div>
 
         <div style="display:flex;gap:0;padding:32px 24px 0;border-bottom:1px solid var(--border);margin-top:32px;">
           <button id="tab-login" onclick="AuthPage.showLogin()"
-            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid var(--pink);color:var(--white);font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;">
+            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid var(--pink);color:#1C1917;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;cursor:pointer;">
             Connexion
           </button>
           <button id="tab-register" onclick="AuthPage.showRegister()"
-            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;cursor:pointer;">
+            style="flex:1;padding:12px;background:none;border:none;border-bottom:2px solid transparent;color:#78716C;font-family:'Outfit',sans-serif;font-size:15px;font-weight:500;cursor:pointer;">
             S'inscrire
           </button>
         </div>

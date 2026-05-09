@@ -127,7 +127,7 @@ const PricingPage = (() => {
     return `${promo.price_eur.toFixed(2)} €`;
   }
 
-   async applyPromo(planId) {
+  async function applyPromo(planId) {
       const code = document.getElementById('pay-promo')?.value?.trim().toUpperCase();
       if (!code) { Toast.error('Entrez un code promo'); return; }
       try {
