@@ -87,3 +87,61 @@ hr,.divider{border-color:#FFE4C4 !important}
 .sidebar-brand strong{color:#D4380D !important;font-family:'Playfair Display',serif !important}
 .sidebar-brand p{color:#C4865A !important}
 #desktop-wrapper{background:#FFF0E0 !important}
+
+/* ── Feed page ───────────────────────────────────────────── */
+.page-header { background: rgba(255,248,240,0.97) !important; border-bottom: 1px solid #FFE4C4 !important; }
+.page-header span { color: #3D1A00 !important; }
+.header-btn { background: #FFF0E0 !important; color: #8B1A00 !important; border: none !important; border-radius: 50% !important; width: 36px !important; height: 36px !important; font-size: 16px !important; cursor: pointer !important; }
+
+/* Filtres continent */
+.continent-btn { background: #FFF0E0 !important; color: #8B1A00 !important; border: 1.5px solid #FFD4A0 !important; border-radius: 50px !important; padding: 6px 14px !important; font-size: 12px !important; font-weight: 600 !important; white-space: nowrap !important; cursor: pointer !important; font-family: 'Plus Jakarta Sans', sans-serif !important; }
+.continent-btn.active { background: var(--gradient) !important; color: #FFE5B4 !important; border-color: transparent !important; }
+
+/* Card swipe */
+.swipe-card { border-radius: 24px !important; overflow: hidden !important; box-shadow: 0 12px 40px rgba(139,26,0,0.2) !important; }
+.card-info { background: linear-gradient(to top, rgba(61,26,0,0.85) 0%, transparent 60%) !important; }
+.card-name { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; color: #FFE5B4 !important; }
+.card-age, .card-location { color: rgba(255,229,180,0.85) !important; }
+
+/* Boutons action */
+.action-btn-dislike { background: #FFF0E0 !important; box-shadow: 0 4px 16px rgba(0,0,0,0.1) !important; }
+.action-btn-like { background: var(--gradient) !important; box-shadow: 0 4px 20px rgba(212,56,13,0.4) !important; }
+.action-btn-super { background: linear-gradient(135deg,#FF7A00,#FFB347) !important; }
+
+/* Empty state */
+.feed-empty { text-align: center !important; padding: 40px 20px !important; }
+.feed-empty-icon { font-size: 60px !important; margin-bottom: 16px !important; }
+.feed-empty-title { font-family: 'Playfair Display', serif !important; font-size: 22px !important; font-weight: 900 !important; color: #3D1A00 !important; margin-bottom: 8px !important; }
+.feed-empty-sub { color: #C4865A !important; font-size: 14px !important; }
+
+/* Stories */
+.story-avatar { border: 2.5px solid #D4380D !important; }
+.story-name { color: #3D1A00 !important; font-size: 10px !important; }
+
+/* Navbar */
+.bottom-nav { background: rgba(255,248,240,0.97) !important; border-top: 1px solid #FFE4C4 !important; }
+.nav-item { color: #C4865A !important; }
+.nav-item.active { color: #D4380D !important; }
+.nav-badge { background: #D4380D !important; }
+
+/* Match page */
+.match-card { background: #FFFFFF !important; border: 1.5px solid #FFE4C4 !important; border-radius: 16px !important; }
+.match-name { font-family: 'Playfair Display', serif !important; font-weight: 700 !important; color: #3D1A00 !important; }
+.match-last { color: #C4865A !important; }
+.match-time { color: #C4865A !important; }
+
+/* Chat */
+.chat-header { background: rgba(255,248,240,0.97) !important; border-bottom: 1px solid #FFE4C4 !important; }
+.msg-bubble { border-radius: 18px !important; }
+.msg-bubble.sent { background: var(--gradient) !important; color: #FFE5B4 !important; }
+.msg-bubble.recv { background: #FFFFFF !important; color: #3D1A00 !important; border: 1px solid #FFE4C4 !important; }
+
+/* Profile */
+.profile-header { background: var(--gradient2) !important; }
+.profile-name { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; color: #3D1A00 !important; }
+.profile-tag { background: #FFF0E0 !important; color: #8B1A00 !important; border: 1px solid #FFD4A0 !important; border-radius: 50px !important; }
+
+/* Page fond général */
+#page-feed, #page-matches, #page-profile, #page-search, #page-menu {
+  background: #FFF8F0 !important;
+}
