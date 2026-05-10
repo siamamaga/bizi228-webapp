@@ -145,3 +145,15 @@ hr,.divider{border-color:#FFE4C4 !important}
 #page-feed, #page-matches, #page-profile, #page-search, #page-menu {
   background: #FFF8F0 !important;
 }
+
+/* Fix profil page textes visibles */
+#page-profile { background: #FFF8F0 !important; color: #3D1A00 !important; }
+#page-profile * { color: #3D1A00; }
+#page-profile .page-header-title { color: #3D1A00 !important; font-family: 'Playfair Display', serif !important; font-weight: 900 !important; }
+#page-profile label { cursor: pointer !important; }
+#page-profile button { cursor: pointer !important; }
+#page-profile input, #page-profile textarea, #page-profile select { background: #FFF0E0 !important; color: #3D1A00 !important; border: 1.5px solid #FFD4A0 !important; border-radius: 14px !important; }
+
+/* Fix toutes les pages intérieures */
+#page-matches, #page-search, #page-menu { background: #FFF8F0 !important; color: #3D1A00 !important; }
+#page-matches *, #page-search *, #page-menu * { color: #3D1A00 !important; }
