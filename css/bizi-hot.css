@@ -157,3 +157,13 @@ hr,.divider{border-color:#FFE4C4 !important}
 /* Fix toutes les pages intérieures */
 #page-matches, #page-search, #page-menu { background: #FFF8F0 !important; color: #3D1A00 !important; }
 #page-matches *, #page-search *, #page-menu * { color: #3D1A00 !important; }
+
+/* FORCE couleurs toutes pages intérieures */
+.page { color: #3D1A00 !important; }
+.page div, .page p, .page span, .page h1, .page h2, .page h3, .page h4, .page label, .page button:not(.btn-primary) { color: #3D1A00 !important; }
+.page-header-title { color: #3D1A00 !important; font-family: 'Playfair Display', serif !important; font-weight: 900 !important; font-size: 18px !important; }
+[style*="color:white"],[style*="color: white"],[style*="color:#fff"],[style*="color: #fff"] { color: #3D1A00 !important; }
+[style*="color:rgba(255,255,255"],[style*="color: rgba(255,255,255"] { color: #78716C !important; }
+[style*="color:var(--white)"],[style*="color: var(--white)"] { color: #3D1A00 !important; }
+[style*="color:var(--text)"],[style*="color: var(--text)"] { color: #3D1A00 !important; }
+[style*="color:var(--muted)"],[style*="color: var(--muted)"] { color: #78716C !important; }
