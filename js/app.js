@@ -24,16 +24,23 @@ const App = (() => {
   function navigate(page) {
     if (!pages[page]) return;
     currentPage = page;
-    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.add('hidden');
+      p.classList.remove('active');
+    });
     const el = document.getElementById(pages[page].el);
-    if (el) { el.classList.remove('hidden'); el.classList.add('active'); }
+    if (el) {
+      el.classList.remove('hidden');
+      el.style.display = 'block';
+      el.classList.add('active');
+    }
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     const activeBtn = document.querySelector('[data-page="' + pages[page].navBtn + '"]');
     if (activeBtn) activeBtn.classList.add('active');
     const nav = document.getElementById('bottom-nav');
     if (nav) nav.style.display = (page === 'chat' || page === 'settings') ? 'none' : 'flex';
     const mod = pages[page].module;
-    if (mod && mod.render) mod.render();
+    if (mod && mod.render) setTimeout(() => mod.render(), 50);
   }
 
   // Demarrage
@@ -67,13 +74,14 @@ const App = (() => {
         PushService.init();
       } else if (Notification.permission === 'default') {
         var btn = document.createElement('div');
-        btn.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#E8317A,#C2185B);color:white;padding:12px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;z-index:9999;box-shadow:0 4px 20px rgba(232,49,122,0.5);';
+        btn.style.cssText = 'position:fixed;top:16px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#D4380D,#FF7A00);color:#FFE5B4;padding:12px 20px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;z-index:9999;box-shadow:0 4px 20px rgba(212,56,13,0.5);';
         btn.innerHTML = '🔔 Activer les notifications';
         btn.onclick = function() { PushService.init(); btn.remove(); };
         document.body.appendChild(btn);
         setTimeout(function() { if (btn.parentNode) btn.remove(); }, 8000);
       }
     }, 3000);
+
     // Sync user toutes les 30s
     async function syncUser() {
       try {
@@ -85,7 +93,7 @@ const App = (() => {
     setInterval(syncUser, 30000);
   }
 
-  // Polling appels entrants global (léger - 1 seule requête toutes les 5s)
+  // Polling appels entrants global
   setInterval(async function() {
     if (typeof VideoCall === 'undefined') return;
     try {
@@ -98,10 +106,10 @@ const App = (() => {
     } catch(e) {}
   }, 5000);
 
-  // Wake-up et keep-alive
-  fetch('https://api.Bizi 228+1.fr/api/ping').catch(() => {});
+  // Wake-up backend
+  fetch('https://mixte-meet-backend.onrender.com/api/ping').catch(() => {});
   setInterval(function() {
-    fetch('https://api.Bizi 228+1.fr/api/ping').catch(() => {});
+    fetch('https://mixte-meet-backend.onrender.com/api/ping').catch(() => {});
   }, 60000);
 
   document.addEventListener('DOMContentLoaded', init);
@@ -113,12 +121,12 @@ const App = (() => {
     if (currentPage === 'feed') {
       Modal.show(
         '<div style="text-align:center;padding:16px;">' +
-          '<div style="font-size:48px;margin-bottom:12px;">🦋</div>' +
-          '<p style="font-size:16px;font-weight:600;margin-bottom:8px;">Quitter Bizi 228+1 ?</p>' +
-          '<p style="font-size:13px;color:var(--muted);margin-bottom:20px;">L\'amour n\'a pas de frontières !</p>' +
+          '<div style="font-size:48px;margin-bottom:12px;">🔥</div>' +
+          '<p style="font-size:16px;font-weight:600;color:#3D1A00;margin-bottom:8px;">Quitter Bizi 228+1 ?</p>' +
+          '<p style="font-size:13px;color:#C4865A;margin-bottom:20px;">Ce soir, tout est possible !</p>' +
           '<div style="display:flex;gap:10px;">' +
-            '<button onclick="Modal.close()" style="flex:1;background:linear-gradient(135deg,var(--pink),#C41F65);border:none;color:white;padding:12px;border-radius:50px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;">Rester 🦋</button>' +
-            '<button onclick="Modal.close()" style="flex:1;background:rgba(255,255,255,0.08);border:1px solid var(--border);color:white;padding:12px;border-radius:50px;cursor:pointer;font-family:Outfit,sans-serif;">Quitter</button>' +
+            '<button onclick="Modal.close()" style="flex:1;background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;color:#FFE5B4;padding:12px;border-radius:50px;font-weight:700;cursor:pointer;font-family:Playfair Display,serif;">Rester 🔥</button>' +
+            '<button onclick="Modal.close()" style="flex:1;background:#FFF0E0;border:1px solid #FFD4A0;color:#8B1A00;padding:12px;border-radius:50px;cursor:pointer;">Quitter</button>' +
           '</div>' +
         '</div>', '');
     } else if (currentPage === 'chat') {
@@ -131,7 +139,6 @@ const App = (() => {
       navigate('feed');
     }
   });
-
 
   function openMenu() {
     const drawer = document.getElementById('app-drawer');
@@ -150,12 +157,3 @@ const App = (() => {
   function logout() { AuthService.logout(); }
   return { navigate, showAuth, showApp, openMenu, closeMenu, logout };
 })();
-
-
-
-
-
-
-
-
-
