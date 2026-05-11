@@ -1,6 +1,6 @@
 // js/services/api.js
 const API = (() => {
-  const BASE = 'https://mixte-meet-backend.onrender.com/api';
+  const BASE = 'https://bizi228-backend.onrender.com/api';
 
   async function request(method, path, body = null, isFormData = false) {
     const token = AuthService.getToken();
@@ -36,4 +36,5 @@ const API = (() => {
     upload: (path, formData)   => request('POST',   path, formData, true),
   };
 })();
+
 

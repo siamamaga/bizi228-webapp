@@ -1,7 +1,7 @@
 // js/services/auth.service.js — Production
 const AuthService = (() => {
   const KEYS  = { token: 'mm_token', refresh: 'mm_refresh', user: 'mm_user' };
-  const API_BASE = 'https://api.Bizi 228+1.fr/api';
+  const API_BASE = 'https://api.Bénin Bizi.fr/api';
 
   let refreshPromise = null; // évite les doubles refresh simultanés
 
@@ -135,3 +135,4 @@ const AuthService = (() => {
     login, register, logout, updateUser, init,
   };
 })();
+

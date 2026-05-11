@@ -1,4 +1,4 @@
-// js/pages/search.js — Bizi 228+1
+// js/pages/search.js — Bénin Bizi
 const SearchPage = (() => {
   let allProfiles = [];
   let filtered = [];
@@ -185,3 +185,4 @@ const SearchPage = (() => {
     },
   };
 })();
+

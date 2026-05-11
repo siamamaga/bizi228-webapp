@@ -1,7 +1,7 @@
 // js/services/socket.js — Temps réel via polling intelligent
 // (Socket.io nécessite une lib externe — on utilise du long-polling robuste)
 const SocketService = (() => {
-  const BACKEND = 'https://api.Bizi 228+1.fr/api';
+  const BACKEND = 'https://api.Bénin Bizi.fr/api';
   const handlers = {};
   let pollInterval    = null;
   let connected       = false;
@@ -146,3 +146,4 @@ const SocketService = (() => {
     sendMessage, sendTyping,
   };
 })();
+

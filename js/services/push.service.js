@@ -3,9 +3,9 @@ const PushService = (() => {
   const VAPID_KEY = 'BG3oQzqXK9-d9UTtK5kWfgx8cSU_jDnKYU9D56yLPzDfPSSqt_tJqo_btpH9KWhTWDXr_gBrgE2S8i-14O5GQ40';
   const FIREBASE_CONFIG = {
     apiKey: "AIzaSyDFsYsWBwKq1d0kNdJYJlX0ewGugUfyZmk",
-    authDomain: "Bizi 228+1.firebaseapp.com",
-    projectId: "Bizi 228+1",
-    storageBucket: "Bizi 228+1.firebasestorage.app",
+    authDomain: "Bénin Bizi.firebaseapp.com",
+    projectId: "Bénin Bizi",
+    storageBucket: "Bénin Bizi.firebasestorage.app",
     messagingSenderId: "1035382105933",
     appId: "1:1035382105933:web:9ec53944535d1eb12db904"
   };
@@ -35,6 +35,7 @@ const PushService = (() => {
 
   return { init };
 })();
+
 
 
 

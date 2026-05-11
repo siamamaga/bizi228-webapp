@@ -1,4 +1,4 @@
-// js/pages/pricing.js — Bizi 228+1
+// js/pages/pricing.js — Bénin Bizi
 const PricingPage = (() => {
   const PLANS = [
     {
@@ -196,3 +196,4 @@ const PricingPage = (() => {
     },
   };
 })();
+

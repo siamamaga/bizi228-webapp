@@ -11,7 +11,7 @@ const AuthPage = (() => {
       <div style="min-height:100vh;background:#FFF8F0;display:flex;flex-direction:column;overflow-y:scroll;-webkit-overflow-scrolling:touch;">
         <div style="padding:48px 24px 0;text-align:center;">
           <div style="margin:0 auto 8px;">
-            <img src="/icons/bizi-logo.jpg" style="width:260px;height:260px;object-fit:contain;" alt="Bizi 228+1">
+            <img src="/icons/bizi-logo.jpg" style="width:260px;height:260px;object-fit:contain;" alt="Bénin Bizi">
           </div>
           <p style="font-size:15px;font-weight:700;color:#3D1A00;font-family:'Playfair Display',serif;margin-top:8px;">
             Tu pensais avoir tout vu ? Attends d'entrer ici.
@@ -302,7 +302,7 @@ const AuthPage = (() => {
         const email    = form.email.value.trim();
         const password = form.password.value;
         await AuthService.login(email, password);
-        Toast.success('Bienvenue sur Bizi 228+1 ! 🔥');
+        Toast.success('Bienvenue sur Bénin Bizi ! 🔥');
         setTimeout(() => App.showApp(), 500);
       });
     },
@@ -351,7 +351,7 @@ const AuthPage = (() => {
       if (btn) { btn.disabled = true; btn.innerHTML = '⏳ Création...'; }
       try {
         await AuthService.register(onboardingData);
-        Toast.success('Bienvenue sur Bizi 228+1 🔥');
+        Toast.success('Bienvenue sur Bénin Bizi 🔥');
         setTimeout(() => App.showApp(), 600);
       } catch (err) {
         Toast.error(err.message || 'Erreur lors de la création du compte');

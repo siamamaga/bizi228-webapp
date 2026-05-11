@@ -1,6 +1,6 @@
 {
-  "name": "Bizi 228+1",
-  "short_name": "Bizi 228+1",
+  "name": "Bénin Bizi",
+  "short_name": "Bénin Bizi",
   "description": "L'amour n'a pas de frontières — Afrique ↔ Monde",
   "start_url": "/",
   "display": "standalone",
@@ -16,3 +16,4 @@
   "categories": ["social", "lifestyle"],
   "screenshots": []
 }
+
