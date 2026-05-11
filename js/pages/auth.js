@@ -11,7 +11,7 @@ const AuthPage = (() => {
       <div style="min-height:100vh;background:#FFF8F0;display:flex;flex-direction:column;overflow-y:scroll;-webkit-overflow-scrolling:touch;">
         <div style="padding:48px 24px 0;text-align:center;">
           <div style="margin:0 auto 8px;">
-            <img src="/icons/bizi-logo.jpg" style="width:260px;height:260px;object-fit:contain;" alt="Bénin Bizi">
+            <img src="/icons/benin-bizi-logo.jpg" style="width:260px;height:260px;object-fit:contain;" alt="Bénin Bizi">
           </div>
           <p style="font-size:15px;font-weight:700;color:#3D1A00;font-family:'Playfair Display',serif;margin-top:8px;">
             Tu pensais avoir tout vu ? Attends d'entrer ici.
@@ -360,3 +360,4 @@ const AuthPage = (() => {
     },
   };
 })();
+
