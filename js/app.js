@@ -107,9 +107,9 @@ const App = (() => {
   }, 5000);
 
   // Wake-up backend
-  fetch('https://bizi228-backend.onrender.com/api/ping').catch(() => {});
+  fetch('https://mixte-meet-backend.onrender.com/api/ping').catch(() => {});
   setInterval(function() {
-    fetch('https://bizi228-backend.onrender.com/api/ping').catch(() => {});
+    fetch('https://mixte-meet-backend.onrender.com/api/ping').catch(() => {});
   }, 60000);
 
   document.addEventListener('DOMContentLoaded', init);
@@ -157,5 +157,6 @@ const App = (() => {
   function logout() { AuthService.logout(); }
   return { navigate, showAuth, showApp, openMenu, closeMenu, logout };
 })();
+
 
 
