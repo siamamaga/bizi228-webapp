@@ -494,7 +494,7 @@ const FeedPage = (() => {
       currentIdx = 0;
       profiles = [];
       photoIndexes = {};
-      try { await API.delete('/swipes/reset'); } catch(e) {}
+      // swipes conservés
       loadProfiles({});
     },
   };
