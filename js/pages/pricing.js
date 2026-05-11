@@ -1,275 +1,157 @@
-// js/pages/pricing.js — Système de tarification avec promotions
+// js/pages/pricing.js — Bizi 228+1
 const PricingPage = (() => {
-
-  // ── Données des plans avec promotions ─────────────────
   const PLANS = [
     {
       id: 'free',
       name: 'Gratuit',
+      label: 'GRATUIT',
       duration: 'Pour toujours',
       price_xof: 0,
-      price_eur: 0,
-      promo: null,
       popular: false,
-      coins_bonus: 0,
       features: [
-        { text: 'Swipe illimité', included: true },
-        { text: '1 Super Like / jour', included: true },
-        { text: 'Messagerie de base', included: true },
-        { text: 'Profil vérifié', included: true },
-        { text: 'Filtres standards', included: true },
-        { text: 'Appels vidéo', included: false },
-        { text: 'Traduction auto', included: false },
-        { text: 'Mode Incognito', included: false },
-        { text: 'Super Likes illimités', included: false },
+        { text: 'Swipe illimité', ok: true },
+        { text: '1 Super Like / jour', ok: true },
+        { text: 'Messagerie de base', ok: true },
+        { text: 'Appels vidéo', ok: false },
+        { text: 'Mode Incognito', ok: false },
+        { text: 'Super Likes illimités', ok: false },
+      ]
+    },
+    {
+      id: 'day',
+      name: '1 Jour',
+      label: 'TOURISTE',
+      duration: '24 heures',
+      price_xof: 1000,
+      popular: false,
+      features: [
+        { text: 'Super Likes illimités', ok: true },
+        { text: 'Messagerie illimitée', ok: true },
+        { text: 'Voir qui vous a liké', ok: true },
+        { text: 'Appels vidéo', ok: false },
+        { text: 'Mode Incognito', ok: false },
       ]
     },
     {
       id: 'weekly',
-      name: 'Premium 1 semaine',
+      name: '1 Semaine',
+      label: 'TOURISTE',
       duration: '7 jours',
-      price_xof: 3500,
-      price_eur: 5.90,
-      promo: null,
+      price_xof: 5000,
       popular: false,
-      coins_bonus: 100,
       features: [
-        { text: 'Super Likes illimités', included: true },
-        { text: 'Appels vidéo HD', included: true },
-        { text: 'Traduction automatique', included: true },
-        { text: 'Mode Incognito', included: true },
-        { text: 'Voir qui vous a liké', included: true },
-        { text: 'Undo (annuler un swipe)', included: true },
-        { text: '100 Coins offerts', included: true },
+        { text: 'Super Likes illimités', ok: true },
+        { text: 'Messagerie illimitée', ok: true },
+        { text: 'Voir qui vous a liké', ok: true },
+        { text: 'Appels vidéo HD', ok: true },
+        { text: 'Mode Incognito', ok: false },
       ]
     },
     {
       id: 'monthly',
-      name: 'Premium 1 mois',
+      name: '1 Mois',
+      label: '🔥 POPULAIRE',
       duration: '30 jours',
-      price_xof: 9900,
-      price_eur: 14.90,
-      promo: {
-        active: true,
-        label: '🔥 LANCEMENT',
-        discount_pct: 30,
-        expires: new Date(Date.now() + 7 * 24 * 3600 * 1000), // 7 jours
-        price_xof: 6930,
-        price_eur: 10.43,
-      },
+      price_xof: 15000,
       popular: true,
-      coins_bonus: 300,
       features: [
-        { text: 'Super Likes illimités', included: true },
-        { text: 'Appels vidéo HD', included: true },
-        { text: 'Traduction automatique', included: true },
-        { text: 'Mode Incognito', included: true },
-        { text: 'Voir qui vous a liké', included: true },
-        { text: 'Undo illimité', included: true },
-        { text: '300 Coins offerts', included: true },
-        { text: 'Boost profil 1x/mois', included: true },
+        { text: 'Super Likes illimités', ok: true },
+        { text: 'Messagerie illimitée', ok: true },
+        { text: 'Appels vidéo HD', ok: true },
+        { text: 'Voir qui vous a liké', ok: true },
+        { text: 'Mode Incognito', ok: true },
+        { text: 'Salons webcam privés', ok: true },
+      ]
+    },
+    {
+      id: 'biannual',
+      name: '6 Mois',
+      label: 'ÉCONOMIQUE',
+      duration: '180 jours',
+      price_xof: 70000,
+      popular: false,
+      features: [
+        { text: 'Tout Premium inclus', ok: true },
+        { text: 'Salons webcam privés', ok: true },
+        { text: 'Appels audio illimités', ok: true },
+        { text: 'Mode Incognito', ok: true },
+        { text: 'Badge Vérifié', ok: true },
       ]
     },
     {
       id: 'yearly',
-      name: 'Premium 1 an',
+      name: '1 An',
+      label: '⭐ MEILLEUR PRIX',
       duration: '365 jours',
-      price_xof: 79900,
-      price_eur: 99.90,
-      promo: {
-        active: true,
-        label: '⭐ MEILLEUR DEAL',
-        discount_pct: 33,
-        expires: null, // Permanent
-        price_xof: 53433,
-        price_eur: 66.93,
-      },
+      price_xof: 120000,
       popular: false,
-      coins_bonus: 5000,
       features: [
-        { text: 'Tout Premium inclus', included: true },
-        { text: '5 000 Coins offerts', included: true },
-        { text: 'Support prioritaire', included: true },
-        { text: 'Badge VIP sur profil', included: true },
-        { text: 'Boosts mensuels offerts', included: true },
-        { text: 'Accès fonctions bêta', included: true },
+        { text: 'Tout Premium inclus', ok: true },
+        { text: 'Support prioritaire', ok: true },
+        { text: 'Badge VIP sur profil', ok: true },
+        { text: 'Boosts mensuels offerts', ok: true },
+        { text: 'Accès fonctions bêta', ok: true },
       ]
     },
   ];
 
-  // ── Compte à rebours ───────────────────────────────────
-  let countdownInterval = null;
+  let selectedPlan = null;
 
-  function startCountdown(expiresDate) {
-    if (countdownInterval) clearInterval(countdownInterval);
-    countdownInterval = setInterval(() => {
-      const diff = expiresDate - Date.now();
-      if (diff <= 0) { clearInterval(countdownInterval); return; }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      const el = document.getElementById('promo-countdown');
-      if (el) el.textContent = `${d}j ${h}h ${m}m ${s}s`;
-    }, 1000);
+  function formatPrice(xof) {
+    if (xof === 0) return 'Gratuit';
+    return xof.toLocaleString('fr-FR') + ' CFA';
   }
 
-  // ── Devise sélectionnée ────────────────────────────────
-  let currency = 'xof';
+  async function render() {
+    const page = document.getElementById('page-pricing');
+    if (!page) return;
 
-  function formatPrice(plan) {
-    if (currency === 'xof') return plan.price_xof === 0 ? 'Gratuit' : `${plan.price_xof.toLocaleString('fr-FR')} CFA`;
-    return plan.price_eur === 0 ? 'Gratuit' : `${plan.price_eur.toFixed(2)} €`;
-  }
+    const user = AuthService.getUser();
 
-  function formatPromoPrice(promo) {
-    if (currency === 'xof') return `${promo.price_xof.toLocaleString('fr-FR')} CFA`;
-    return `${promo.price_eur.toFixed(2)} €`;
-  }
+    page.innerHTML = `
+      <div style="background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);padding:32px 20px 24px;text-align:center;">
+        <div style="font-size:40px;margin-bottom:8px;">⭐</div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:#FFE5B4;">Passez Premium</div>
+        <div style="font-size:14px;color:rgba(255,229,180,0.8);margin-top:6px;">Ce soir, pas de limites 🔥</div>
+      </div>
 
-  async function applyPromo(planId) {
-      const code = document.getElementById('pay-promo')?.value?.trim().toUpperCase();
-      if (!code) { Toast.error('Entrez un code promo'); return; }
-      try {
-        const res = await API.post('/payment/validate-promo', { code, planId });
-        if (res?.success) {
-          const d = res.data;
-          document.getElementById('promo-result').innerHTML = `<span style="color:#22C55E;">✅ -${d.discount_pct}% appliqué ! Prix : ${d.discounted_price.toLocaleString('fr-FR')} CFA (économie ${d.savings.toLocaleString('fr-FR')} CFA)</span>`;
-          window._promoData = d;
-        } else {
-          document.getElementById('promo-result').innerHTML = `<span style="color:#EF4444;">❌ ${res.message}</span>`;
-          window._promoData = null;
-        }
-      } catch(e) {
-        document.getElementById('promo-result').innerHTML = `<span style="color:#EF4444;">❌ Erreur validation</span>`;
-      }
-    }
-
-  function renderPlanCard(plan) {
-    const hasPromo = plan.promo?.active;
-    const isPopular = plan.popular;
-    const isFree = plan.id === 'free';
-
-    return `
-      <div style="
-        background: ${isPopular ? 'linear-gradient(160deg, rgba(232,49,122,0.15), var(--charcoal))' : 'var(--charcoal)'};
-        border: 1.5px solid ${isPopular ? 'rgba(232,49,122,0.4)' : hasPromo ? 'rgba(245,158,11,0.3)' : 'var(--border)'};
-        border-radius: var(--radius-lg);
-        padding: 24px 20px;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.2s;
-        ${isPopular ? 'transform: scale(1.02);' : ''}
-      ">
-        <!-- Badge populaire / promo -->
-        ${isPopular ? `<div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--pink);color:white;font-size:11px;font-weight:700;padding:4px 16px;border-radius:0 0 10px 10px;white-space:nowrap;letter-spacing:0.5px;">⭐ PLUS POPULAIRE</div>` : ''}
-        ${hasPromo && !isPopular ? `<div style="position:absolute;top:12px;right:12px;background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.4);color:var(--gold);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;">${plan.promo.label}</div>` : ''}
-        ${hasPromo && isPopular ? `<div style="position:absolute;top:12px;right:12px;background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.4);color:var(--gold);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;">${plan.promo.label}</div>` : ''}
-
-        <!-- Nom du plan -->
-        <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:12px;margin-top:${isPopular?'16px':'0'};">${plan.name}</div>
-
-        <!-- Prix -->
-        <div style="margin-bottom:4px;">
-          ${hasPromo ? `
-            <!-- Prix barré -->
-            <div style="display:flex;align-items:center;gap:10px;">
-              <span style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--pink);">${formatPromoPrice(plan.promo)}</span>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:12px;padding-bottom:80px;">
+        ${PLANS.map(plan => `
+          <div onclick="PricingPage.selectPlan('${plan.id}')" id="plan-card-${plan.id}"
+            style="background:#FFFFFF;border:2px solid ${plan.popular ? '#D4380D' : '#FFE4C4'};border-radius:20px;padding:16px;cursor:pointer;transition:all 0.2s;${plan.popular ? 'box-shadow:0 8px 32px rgba(212,56,13,0.2);' : ''}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
               <div>
-                <div style="font-size:14px;text-decoration:line-through;color:var(--muted);">${formatPrice(plan)}</div>
-                <div style="font-size:12px;color:var(--gold);font-weight:700;">-${plan.promo.discount_pct}%</div>
+                ${plan.popular ? `<div style="background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);color:#FFE5B4;font-size:10px;font-weight:700;padding:3px 10px;border-radius:50px;display:inline-block;margin-bottom:6px;">${plan.label}</div><br>` : `<div style="color:#C4865A;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">${plan.label}</div>`}
+                <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#3D1A00;">${plan.name}</div>
+                <div style="font-size:12px;color:#C4865A;">${plan.duration}</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:${plan.popular ? '#D4380D' : '#3D1A00'};">${formatPrice(plan.price_xof)}</div>
               </div>
             </div>
-          ` : `
-            <span style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:${isFree ? 'var(--green)' : 'var(--pink)'};">${formatPrice(plan)}</span>
-          `}
-        </div>
-
-        <!-- Durée -->
-        <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">${plan.duration}${plan.coins_bonus > 0 ? ` · <span style="color:var(--gold);">+${plan.coins_bonus} coins</span>` : ''}</div>
-
-        <!-- Compte à rebours promo -->
-        ${hasPromo && plan.promo.expires ? `
-          <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:8px 12px;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
-            <span style="font-size:16px;">⏰</span>
-            <div>
-              <div style="font-size:11px;color:var(--gold);font-weight:600;">OFFRE LIMITÉE — Expire dans</div>
-              <div style="font-size:14px;font-weight:700;color:white;" id="promo-countdown">--j --h --m --s</div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;">
+              ${plan.features.map(f => `
+                <span style="font-size:11px;color:${f.ok ? '#3D1A00' : '#C4865A'};background:${f.ok ? '#FFF0E0' : '#F5F5F5'};border:1px solid ${f.ok ? '#FFD4A0' : '#E5E5E5'};border-radius:50px;padding:3px 8px;">
+                  ${f.ok ? '✓' : '✗'} ${f.text}
+                </span>
+              `).join('')}
             </div>
+            ${plan.id !== 'free' ? `
+              <button style="width:100%;margin-top:12px;padding:12px;background:${plan.popular ? 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)' : '#FFF0E0'};border:${plan.popular ? 'none' : '1.5px solid #FFD4A0'};border-radius:50px;color:${plan.popular ? '#FFE5B4' : '#8B1A00'};font-family:'Playfair Display',serif;font-size:14px;font-weight:700;cursor:pointer;">
+                ${user?.is_premium ? 'Plan actuel' : 'Choisir ce plan'}
+              </button>
+            ` : `<div style="text-align:center;margin-top:8px;font-size:12px;color:#C4865A;">Plan actuel</div>`}
           </div>
-        ` : ''}
+        `).join('')}
 
-        <!-- Features -->
-        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
-          ${plan.features.map(f => `
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:${f.included ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.25)'};">
-              <span style="color:${f.included ? 'var(--pink)' : 'rgba(255,255,255,0.2)'};font-weight:700;flex-shrink:0;">${f.included ? '✓' : '✕'}</span>
-              ${f.text}
-            </div>`).join('')}
-        </div>
-
-        <!-- Bouton -->
-        ${isFree ? `
-          <button onclick="Modal.close()" style="width:100%;padding:13px;border-radius:50px;font-size:14px;font-weight:600;background:transparent;border:1.5px solid var(--border);color:var(--muted);cursor:pointer;font-family:'Outfit',sans-serif;">
-            Plan actuel
-          </button>
-        ` : `
-          <button onclick="PricingPage.selectPlan('${plan.id}')" style="width:100%;padding:13px;border-radius:50px;font-size:14px;font-weight:600;background:${isPopular ? 'linear-gradient(135deg,var(--pink),#C41F65)' : 'rgba(232,49,122,0.15)'};border:1.5px solid ${isPopular ? 'var(--pink)' : 'rgba(232,49,122,0.3)'};color:${isPopular ? 'white' : 'var(--pink-light)'};cursor:pointer;font-family:'Outfit',sans-serif;box-shadow:${isPopular ? '0 8px 24px rgba(232,49,122,0.35)' : 'none'};">
-            ${isFree ? 'Plan actuel' : hasPromo ? `🔥 Profiter de l'offre` : 'Choisir ce plan'}
-          </button>
-        `}
-      </div>
-    `;
-  }
-
-  function render(targetEl) {
-    const container = targetEl || document.getElementById('page-pricing') || document.getElementById('modal-content');
-    if (!container) return;
-
-    // Démarrer les comptes à rebours
-    PLANS.forEach(p => {
-      if (p.promo?.active && p.promo?.expires) {
-        setTimeout(() => startCountdown(p.promo.expires), 100);
-      }
-    });
-
-    container.innerHTML = `
-      <div style="padding:20px;">
-        <!-- Header -->
-        <div style="text-align:center;margin-bottom:24px;">
-          <div style="font-size:36px;margin-bottom:8px;">⭐</div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:8px;">Passez Premium</h2>
-          <p style="font-size:14px;color:var(--muted);">L'amour mérite le meilleur. Sans engagement.</p>
-        </div>
-
-        <!-- Sélecteur devise -->
-        <div style="display:flex;background:var(--surface);border-radius:50px;padding:4px;margin-bottom:20px;max-width:240px;margin-left:auto;margin-right:auto;">
-          <button id="btn-xof" onclick="PricingPage.setCurrency('xof')" style="flex:1;padding:8px;border-radius:50px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;background:var(--pink);color:white;transition:all 0.2s;">
-            🇧🇯 CFA
-          </button>
-          <button id="btn-eur" onclick="PricingPage.setCurrency('eur')" style="flex:1;padding:8px;border-radius:50px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;background:transparent;color:var(--muted);transition:all 0.2s;">
-            🇪🇺 EUR
-          </button>
-        </div>
-
-        <!-- Plans -->
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          ${PLANS.map(plan => renderPlanCard(plan)).join('')}
-        </div>
-
-        <!-- Moyens de paiement -->
-        <div style="margin-top:20px;padding:16px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:10px;">Moyens de paiement acceptés</div>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
-            ${['📱 MTN Mobile Money','🟠 Orange Money','🔵 Wave','💳 Visa/Mastercard','💰 PayPal'].map(p => `
-              <span style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--muted);">${p}</span>
-            `).join('')}
+        <div style="background:#FFF8F0;border:1.5px solid #FFE4C4;border-radius:16px;padding:16px;text-align:center;">
+          <div style="font-size:24px;margin-bottom:8px;">💳</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#3D1A00;margin-bottom:6px;">Paiement sécurisé</div>
+          <div style="font-size:12px;color:#C4865A;margin-bottom:12px;">MasterCard · Visa · Mobile Money</div>
+          <div style="display:flex;justify-content:center;gap:12px;font-size:24px;">
+            💳 📱 🏦
           </div>
-        </div>
-
-        <!-- Garantie -->
-        <div style="text-align:center;margin-top:16px;font-size:12px;color:var(--muted);">
-          🔒 Paiement sécurisé · Annulation à tout moment · Remboursement 7 jours
+          <div style="font-size:11px;color:#C4865A;margin-top:8px;">Intégration CinetPay/FedaPay — bientôt disponible</div>
         </div>
       </div>
     `;
@@ -278,83 +160,39 @@ const PricingPage = (() => {
   return {
     render,
 
-    setCurrency(curr) {
-      currency = curr;
-      render();
-      setTimeout(() => {
-        const xofBtn = document.getElementById('btn-xof');
-        const eurBtn = document.getElementById('btn-eur');
-        if (xofBtn) {
-          xofBtn.style.background = curr === 'xof' ? 'var(--pink)' : 'transparent';
-          xofBtn.style.color = curr === 'xof' ? 'white' : 'var(--muted)';
-        }
-        if (eurBtn) {
-          eurBtn.style.background = curr === 'eur' ? 'var(--pink)' : 'transparent';
-          eurBtn.style.color = curr === 'eur' ? 'white' : 'var(--muted)';
-        }
-      }, 10);
-    },
-    selectPlan(planId) {
-      const plan = PLANS.find(p => p.id === planId);
-      if (!plan) return;
-      const price = plan.promo?.active ? (currency === 'xof' ? plan.promo.price_xof : plan.promo.price_eur) : (currency === 'xof' ? plan.price_xof : plan.price_eur);
-      const curr  = currency === 'xof' ? 'CFA' : '€';
+    selectPlan(id) {
+      const plan = PLANS.find(p => p.id === id);
+      if (!plan || plan.id === 'free') return;
+      selectedPlan = plan;
+
       Modal.show(`
-        <div style="padding:8px;text-align:center;">
-          <div style="font-size:40px;margin-bottom:12px;">💳</div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;">${plan.name}</h3>
-          <p style="font-size:22px;font-weight:700;color:var(--pink);margin-bottom:16px;">${currency === 'xof' ? price.toLocaleString('fr-FR') : price.toFixed(2)} ${curr}</p>
-          <div style="margin-bottom:16px;text-align:left;">
-            <label style="font-size:13px;color:var(--muted);display:block;margin-bottom:6px;">📱 Votre numéro Mobile Money</label>
-            <input id="pay-phone" type="tel" placeholder="Ex: +22961234567" class="input-field" style="width:100%;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:white;font-size:14px;font-family:'Outfit',sans-serif;">
-            <p style="font-size:11px;color:var(--muted);margin-top:6px;">MTN · Moov · Wave · Orange Money</p>
+        <div style="text-align:center;padding:8px;">
+          <div style="font-size:40px;margin-bottom:12px;">⭐</div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#3D1A00;margin-bottom:4px;">${plan.name}</div>
+          <div style="font-size:28px;font-weight:900;color:#D4380D;font-family:'Playfair Display',serif;margin:12px 0;">${formatPrice(plan.price_xof)}</div>
+          <div style="font-size:13px;color:#C4865A;margin-bottom:20px;">${plan.duration}</div>
+          <div style="background:#FFF0E0;border-radius:14px;padding:14px;margin-bottom:16px;text-align:left;">
+            <div style="font-size:12px;color:#C4865A;margin-bottom:8px;font-weight:700;">CHOISIR UN MOYEN DE PAIEMENT</div>
+            <button onclick="PricingPage.payWithMastercard('${plan.id}')" style="width:100%;padding:12px;background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;color:#FFE5B4;border-radius:12px;font-weight:700;cursor:pointer;margin-bottom:8px;font-size:14px;">💳 MasterCard / Visa</button>
+            <button onclick="PricingPage.payWithMobileMoney('${plan.id}')" style="width:100%;padding:12px;background:#FFF0E0;border:1.5px solid #FFD4A0;color:#8B1A00;border-radius:12px;font-weight:700;cursor:pointer;font-size:14px;">📱 Mobile Money</button>
           </div>
-          <div style="margin-bottom:16px;text-align:left;">
-            <label style="font-size:13px;color:var(--muted);display:block;margin-bottom:6px;">🏷️ Code promo (optionnel)</label>
-            <div style="display:flex;gap:8px;">
-              <input id="pay-promo" type="text" placeholder="Ex: JEAN229" style="flex:1;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:white;font-size:14px;font-family:'Outfit',sans-serif;text-transform:uppercase;">
-              <button onclick="PricingPage.applyPromo('${planId}')" style="padding:12px 16px;border-radius:12px;background:rgba(232,49,122,0.2);border:1px solid rgba(232,49,122,0.4);color:var(--pink);font-weight:600;cursor:pointer;">Valider</button>
-            </div>
-            <div id="promo-result" style="margin-top:8px;font-size:12px;"></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <button onclick="PricingPage.payWithFedaPay('${planId}')" style="width:100%;padding:13px;border-radius:50px;background:linear-gradient(135deg,#FFD700,#FFA500);border:none;color:#1A0A14;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;">
-              📱 Payer avec Mobile Money
-            </button>
-            <button onclick="Modal.close();Toast.info('Carte bancaire — Bientôt disponible')" style="width:100%;padding:13px;border-radius:50px;background:rgba(232,49,122,0.15);border:1.5px solid rgba(232,49,122,0.4);color:var(--pink);font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;font-size:14px;">
-              💳 Carte Visa/Mastercard (Bientôt)
-            </button>
-          </div>
-          <p style="font-size:11px;color:var(--muted);margin-top:14px;">🔒 Paiement sécurisé · Annulation à tout moment</p>
+          <button onclick="Modal.close()" style="background:none;border:none;color:#C4865A;cursor:pointer;font-size:13px;">Annuler</button>
         </div>
-      `, '');
+      `, 'Activer Premium');
     },
 
-    async payWithFedaPay(planId) {
-      const phone = document.getElementById('pay-phone')?.value?.trim();
-      if (!phone) { Toast.error('Entrez votre numéro de téléphone'); return; }
+    payWithMastercard(planId) {
       Modal.close();
-      Toast.info('Redirection vers le paiement...');
-      try {
-        const body = { planId, phone };
-        if (window._promoData) {
-          body.affiliate_id = window._promoData.affiliate_id;
-          body.promo_code = document.getElementById('pay-promo')?.value?.trim().toUpperCase();
-        }
-        const res = await API.post('/payment/create', body);
-        if (res?.data?.url) {
-          window._promoData = null;
-          window.location.href = res.data.url;
-        } else {
-          Toast.error('Erreur lors de la création du paiement');
-        }
-      } catch(err) {
-        Toast.error(err.message || 'Erreur paiement');
-      }
+      Toast.info('Paiement MasterCard/Visa — intégration CinetPay bientôt disponible !');
+    },
+
+    payWithMobileMoney(planId) {
+      Modal.close();
+      Toast.info('Mobile Money — intégration FedaPay bientôt disponible !');
+    },
+
+    setCurrency(cur) {
+      // Conservé pour compatibilité
     },
   };
 })();
-
-
-
-
