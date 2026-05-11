@@ -35,7 +35,7 @@ const FeedPage = (() => {
         </div>
       </div>
 
-      <div id="stories-bar" style="padding:8px 12px;display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:4px;min-height:65px;"></div>
+      <div id="stories-bar" style="padding:8px 12px;display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid #FFE4C4;margin-bottom:4px;min-height:65px;"></div>
       <div style="padding:0 12px 10px;display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
         <button class="continent-btn active" onclick="FeedPage.filterContinent('',this)">🌍 Tous</button>
         <button class="continent-btn" onclick="FeedPage.filterOnline(this)">🟢 En ligne</button>
@@ -50,23 +50,23 @@ const FeedPage = (() => {
 
         <div style="display:flex;align-items:center;justify-content:center;gap:16px;padding:0 0 20px;">
           <button onclick="FeedPage.undoSwipe()"
-            style="width:46px;height:46px;border-radius:50%;background:#1A1320;border:2px solid rgba(255,200,50,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;"
+            style="width:46px;height:46px;border-radius:50%;background:#FFF0E0;border:2px solid #FFD4A0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;"
             title="Annuler">↩️</button>
           <button onclick="FeedPage.swipe('dislike')"
-            style="width:60px;height:60px;border-radius:50%;background:#1A1320;border:2px solid rgba(239,68,68,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);"
+            style="width:60px;height:60px;border-radius:50%;background:#FFF0E0;border:2px solid rgba(239,68,68,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);"
             title="Passer">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="3" stroke-linecap="round">
               <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
             </svg>
           </button>
           <button onclick="FeedPage.swipe('super_like')"
-            style="width:50px;height:50px;border-radius:50%;background:#1A1320;border:2px solid rgba(201,168,76,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;"
+            style="width:50px;height:50px;border-radius:50%;background:#FFF0E0;border:2px solid rgba(201,168,76,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;"
             title="Super Like">⭐</button>
           <button onclick="FeedPage.swipe('like')"
-            style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--pink),#C41F65);border:none;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(232,49,122,0.5);color:white;"
+            style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(232,49,122,0.5);color:white;"
             title="J'aime">♥</button>
           <button onclick="FeedPage.openChat()"
-            style="width:46px;height:46px;border-radius:50%;background:#1A1320;border:2px solid rgba(232,49,122,0.4);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;"
+            style="width:46px;height:46px;border-radius:50%;background:#FFF0E0;border:2px solid rgba(232,49,122,0.4);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;"
             title="Message">💬</button>
         </div>
       </div>
