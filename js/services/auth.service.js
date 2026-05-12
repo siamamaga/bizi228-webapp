@@ -100,6 +100,15 @@ const AuthService = (() => {
     return res.data;
   }
 
+  function sendLocation() {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      API.put('/me/location', {
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude
+      }).catch(() => {});
+    }, function() {}, { timeout: 8000 });
+  }
   async function logout() {
     try { await API.post('/auth/logout', {}); } catch {}
     clear();
@@ -135,4 +144,5 @@ const AuthService = (() => {
     login, register, logout, updateUser, init,
   };
 })();
+
 
