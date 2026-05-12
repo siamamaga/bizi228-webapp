@@ -165,7 +165,7 @@ const FeedPage = (() => {
 
       <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 20px 16px;z-index:11;">
         <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#FFE5B4;margin-bottom:4px;">${profile.first_name}, ${age}</div>
-        <div style="font-size:13px;color:rgba(255,229,180,0.8);margin-bottom:6px;">${flag} ${city}${profile.profession ? ' · ' + profile.profession : ''}</div>
+        <div style="font-size:13px;color:rgba(255,229,180,0.8);margin-bottom:6px;">${flag} ${city}${profile.profession ? ' · ' + profile.profession : ''} ${profile.distance_km !== null && profile.distance_km !== undefined ? '<span style="background:rgba(255,229,180,0.15);border-radius:10px;padding:2px 8px;font-size:11px;">📍 ' + (profile.distance_km < 1 ? '<1' : profile.distance_km) + ' km</span>' : ''}</div>
         ${profile.bio ? `<div style="font-size:12px;color:rgba(255,229,180,0.65);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${profile.bio}</div>` : ''}
       </div>
 
@@ -499,5 +499,6 @@ const FeedPage = (() => {
     },
   };
 })();
+
 
 
