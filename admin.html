@@ -226,7 +226,7 @@ select.input-field option{background:#1A1320;}
         <div class="admin-avatar">👑</div>
         <div><div class="admin-name" id="admin-name">Admin</div><div class="admin-role">superadmin</div></div>
       </div>
-      <button class="btn-logout" onclick="doLogout()">🚪 Déconnexion</button>
+      <button class="btn-logout" onclick="changeAdminPassword()" style="margin-bottom:8px;background:rgba(255,165,0,0.1);border:1px solid rgba(255,165,0,0.3);color:#FFA500;">🔑 Changer mot de passe</button><button class="btn-logout" onclick="doLogout()">🚪 Déconnexion</button>
     </div>
   </aside>
 
@@ -534,6 +534,20 @@ async function doLogin() {
   }
 }
 
+async function changeAdminPassword() {
+  const oldPass = prompt('Mot de passe actuel :');
+  if (!oldPass) return;
+  const newPass = prompt('Nouveau mot de passe (min 8 caractères) :');
+  if (!newPass || newPass.length < 8) { alert('Mot de passe trop court !'); return; }
+  const confirm = prompt('Confirmer le nouveau mot de passe :');
+  if (newPass !== confirm) { alert('Les mots de passe ne correspondent pas !'); return; }
+  try {
+    const res = await fetch(API + '/auth/change-password', {method:'PUT',headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'},body:JSON.stringify({oldPassword:oldPass,newPassword:newPass})});
+    const data = await res.json();
+    if (data.success) { alert('✅ Mot de passe changé avec succès !'); }
+    else { alert('❌ Erreur : ' + data.message); }
+  } catch(e) { alert('❌ Erreur réseau'); }
+}
 function doLogout() {
   if (!confirm('Se déconnecter ?')) return;
   localStorage.removeItem('mm_admin_token');
@@ -1180,5 +1194,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
+
 
 
