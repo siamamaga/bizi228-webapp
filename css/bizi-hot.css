@@ -185,3 +185,6 @@ hr,.divider{border-color:#FFE4C4 !important}
 #feed-card div[style*="font-family:'Playfair"] { color: #FFE5B4 !important; }
 #feed-card div[style*="rgba(255,229,180"] { color: rgba(255,229,180,0.8) !important; }
 
+
+.chat-message.sent .msg-time { text-align: right !important; margin-right: 4px !important; }
+
