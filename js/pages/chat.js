@@ -200,7 +200,7 @@ const ChatPage = (() => {
             '<div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:4px;">🎙️ ' + (msg.duration || 0) + 's</div>' +
           '</div>'
         : '<div class="msg-bubble">' + (msg.content || '') + '</div>') +
-        '<div class="msg-time">' + msg.time + statusIcon + '</div>' +
+        '<div class="msg-time" style="text-align:' + (msg.sent ? 'right' : 'left') + ';">' + msg.time + statusIcon + '</div>' +
       '</div>' +
     '</div>';
   }
@@ -437,6 +437,7 @@ const ChatPage = (() => {
     },
   };
 })();
+
 
 
 
