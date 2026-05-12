@@ -1,6 +1,6 @@
 // js/services/api.js
 const API = (() => {
-  const BASE = 'https://mixte-meet-backend.onrender.com/api';
+  const BASE = 'http://79.143.189.106:3002/api';
 
   async function request(method, path, body = null, isFormData = false) {
     const token = AuthService.getToken();
@@ -36,6 +36,7 @@ const API = (() => {
     upload: (path, formData)   => request('POST',   path, formData, true),
   };
 })();
+
 
 
 
