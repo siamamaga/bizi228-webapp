@@ -107,9 +107,9 @@ const App = (() => {
   }, 5000);
 
   // Wake-up backend
-  fetch('http://79.143.189.106:3002/api/ping').catch(() => {});
+  fetch('https://api.beninbizi.fr/api/ping').catch(() => {});
   setInterval(function() {
-    fetch('http://79.143.189.106:3002/api/ping').catch(() => {});
+    fetch('https://api.beninbizi.fr/api/ping').catch(() => {});
   }, 60000);
 
   document.addEventListener('DOMContentLoaded', init);
@@ -157,6 +157,7 @@ const App = (() => {
   function logout() { AuthService.logout(); }
   return { navigate, showAuth, showApp, openMenu, closeMenu, logout };
 })();
+
 
 
 
