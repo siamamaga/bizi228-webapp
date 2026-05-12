@@ -32,7 +32,7 @@ label,.input-label{color:#3D1A00 !important;font-weight:600 !important}
 .btn-dislike,.btn-pass{background:#FFF0E0 !important;color:#C4865A !important;border:1.5px solid #FFE4C4 !important}
 .btn-super{background:linear-gradient(135deg,#FF7A00,#FFB347) !important;color:white !important}
 .chat-bg,.chat-page{background:#FFF0E0 !important}
-.chat-message.sent .msg-bubble{background:var(--gradient) !important;color:#FFE5B4 !important}
+.chat-message.sent .msg-bubble{background:var(--gradient) !important;color:#FFE5B4 !important} .chat-message.sent .msg-time { text-align: right !important; }
 .chat-message.recv .msg-bubble{background:#FFFFFF !important;color:#3D1A00 !important;border:1px solid #FFE4C4 !important}
 .chat-header{background:rgba(255,248,240,0.97) !important;border-bottom:1px solid #FFE4C4 !important}
 .chat-name{font-family:'Playfair Display',serif !important;font-weight:700 !important;color:#3D1A00 !important}
@@ -184,3 +184,4 @@ hr,.divider{border-color:#FFE4C4 !important}
 #feed-card *, #feed-card-bg-1 *, #feed-card-bg-2 * { color: #FFE5B4 !important; }
 #feed-card div[style*="font-family:'Playfair"] { color: #FFE5B4 !important; }
 #feed-card div[style*="rgba(255,229,180"] { color: rgba(255,229,180,0.8) !important; }
+
