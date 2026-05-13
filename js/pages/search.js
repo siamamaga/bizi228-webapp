@@ -33,7 +33,7 @@ const SearchPage = (() => {
         '<div style="position:absolute;top:8px;right:8px;width:12px;height:12px;border-radius:50%;background:' + status.color + ';border:2px solid white;"></div>' +
         (p.is_verified ? '<div style="position:absolute;top:8px;left:8px;background:rgba(34,197,94,0.9);color:white;font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;">✅</div>' : '') +
         '<div style="position:absolute;bottom:0;left:0;right:0;padding:10px;">' +
-          '<div style="font-family:Playfair Display,serif;font-size:15px;font-weight:700;color:#FFE5B4;">' + p.first_name + ', ' + age + '</div>' +
+          '<div style="font-family:Playfair Display,serif;font-size:15px;font-weight:700;color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,0.8);">' + p.first_name + ', ' + age + '</div>' +
           '<div style="font-size:11px;color:rgba(255,229,180,0.8);">' + flag + ' ' + (p.city || p.country_name || '') + '</div>' +
           '<div style="font-size:10px;color:' + status.color + ';margin-top:2px;">● ' + status.label + '</div>' +
         '</div>' +
@@ -185,5 +185,6 @@ const SearchPage = (() => {
     },
   };
 })();
+
 
 
