@@ -31,6 +31,7 @@ const FeedPage = (() => {
         <div style="display:flex;gap:8px;">
           <button class="header-btn" onclick="FeedPage.showFilters()" style="background:#FFF0E0;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;">⚙️</button>
           <button class="header-btn" onclick="FeedPage.showNotifs()" style="background:#FFF0E0;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;">🔔</button>
+          <button id="btn-location-toggle" onclick="FeedPage.toggleLocation()" style="background:${localStorage.getItem('locationEnabled') === 'true' ? '#D4380D' : '#FFF0E0'};border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;transition:background 0.3s;" title="Partager ma position">📍</button>
         </div>
       </div>
 
@@ -489,6 +490,24 @@ const FeedPage = (() => {
     },
 
     showNotifs() { App.navigate('matches'); },
+    toggleLocation() {
+      const enabled = localStorage.getItem('locationEnabled') === 'true';
+      const newState = !enabled;
+      localStorage.setItem('locationEnabled', newState);
+      const btn = document.getElementById('btn-location-toggle');
+      if (btn) btn.style.background = newState ? '#D4380D' : '#FFF0E0';
+      if (newState) {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(pos) {
+            API.put('/me/location', { latitude: pos.coords.latitude, longitude: pos.coords.longitude }).catch(() => {});
+            Toast.success('📍 Position partagée !');
+          }, function() { Toast.error('Géolocalisation refusée'); });
+        }
+      } else {
+        API.put('/me/location', { latitude: null, longitude: null }).catch(() => {});
+        Toast.info('📍 Position masquée');
+      }
+    },
 
     async reload() {
       currentIdx = 0;
@@ -499,6 +518,8 @@ const FeedPage = (() => {
     },
   };
 })();
+
+
 
 
 
