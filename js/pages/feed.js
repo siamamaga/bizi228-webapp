@@ -36,10 +36,11 @@ const FeedPage = (() => {
       </div>
 
       <div id="stories-bar" style="padding:8px 12px;display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:1px solid #FFE4C4;margin-bottom:4px;min-height:65px;"></div>
-      
+
       <div style="padding:8px 12px 10px;display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
         <button class="continent-btn active" onclick="FeedPage.filterContinent('',this)" style="background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);color:#FFE5B4;border:none;border-radius:50px;padding:6px 14px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer;">🌍 Tous</button>
         <button class="continent-btn" onclick="FeedPage.filterOnline(this)" style="background:#FFF0E0;color:#8B1A00;border:1.5px solid #FFD4A0;border-radius:50px;padding:6px 14px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;">🟢 En ligne</button>
+        <button class="continent-btn" onclick="FeedPage.filterByDistance(50,this)" style="background:#FFF0E0;color:#8B1A00;border:1.5px solid #FFD4A0;border-radius:50px;padding:6px 14px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;">📍 Près de moi</button>
         <button class="continent-btn" onclick="FeedPage.filterByCountry('TG',this)" style="background:#FFF0E0;color:#8B1A00;border:1.5px solid #FFD4A0;border-radius:50px;padding:6px 14px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;">🇹🇬 Togo</button>
         <button class="continent-btn" onclick="FeedPage.filterByCountry('BJ',this)" style="background:#FFF0E0;color:#8B1A00;border:1.5px solid #FFD4A0;border-radius:50px;padding:6px 14px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;">🇧🇯 Bénin</button>
       </div>
@@ -81,13 +82,17 @@ const FeedPage = (() => {
     try {
       let url = '/feed';
       const params = [];
-      if (filters.continent)    params.push('continent=' + filters.continent);
-      if (filters.country_code) params.push('country_code=' + filters.country_code);
-      if (filters.age_min)      params.push('age_min=' + filters.age_min);
-      if (filters.age_max)      params.push('age_max=' + filters.age_max);
+      if (filters.continent)     params.push('continent=' + filters.continent);
+      if (filters.country_code)  params.push('country_code=' + filters.country_code);
+      if (filters.age_min)       params.push('age_min=' + filters.age_min);
+      if (filters.age_max)       params.push('age_max=' + filters.age_max);
+      if (filters.distance_max)  params.push('distance_max=' + filters.distance_max);
       if (params.length) url += '?' + params.join('&');
+
       const data = await API.get(url);
       let profs = data?.data || [];
+
+      // Filtres côté client
       if (filters.onlineOnly) {
         profs = profs.filter(p => {
           if (!p.last_active_at) return false;
@@ -95,6 +100,16 @@ const FeedPage = (() => {
         });
       }
       if (filters.gender) profs = profs.filter(p => p.gender === filters.gender);
+
+      // Tri par distance si disponible
+      if (filters.sort_distance) {
+        profs.sort((a, b) => {
+          if (a.distance_km === null || a.distance_km === undefined) return 1;
+          if (b.distance_km === null || b.distance_km === undefined) return -1;
+          return a.distance_km - b.distance_km;
+        });
+      }
+
       profiles = profs;
       currentIdx = 0;
       photoIndexes = {};
@@ -142,6 +157,9 @@ const FeedPage = (() => {
     const diff = profile.last_active_at ? Date.now() - parseDate(profile.last_active_at) : Infinity;
     const online = diff < 600000;
     const absent = diff >= 600000 && diff < 3600000;
+    const distLabel = (profile.distance_km !== null && profile.distance_km !== undefined)
+      ? `<span style="background:rgba(255,229,180,0.2);border-radius:10px;padding:2px 8px;font-size:11px;margin-left:4px;">📍 ${profile.distance_km < 1 ? '<1' : profile.distance_km} km</span>`
+      : '';
 
     card.innerHTML = `
       <div style="position:absolute;inset:0;">
@@ -161,12 +179,13 @@ const FeedPage = (() => {
       ` : ''}
 
       ${online ? `<div style="position:absolute;top:14px;right:14px;background:rgba(34,197,94,0.9);color:white;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;z-index:11;">🟢 En ligne</div>` : absent ? `<div style="position:absolute;top:14px;right:14px;background:rgba(245,158,11,0.9);color:white;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;z-index:11;">🟡 Absent</div>` : ''}
-
       ${profile.is_verified ? `<div style="position:absolute;top:14px;left:14px;background:rgba(34,197,94,0.9);color:white;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;z-index:11;">✅ Vérifié</div>` : ''}
 
       <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 20px 16px;z-index:11;">
         <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#FFE5B4;margin-bottom:4px;">${profile.first_name}, ${age}</div>
-        <div style="font-size:13px;color:rgba(255,229,180,0.8);margin-bottom:6px;">${flag} ${city}${profile.profession ? ' · ' + profile.profession : ''} ${profile.distance_km !== null && profile.distance_km !== undefined ? '<span style="background:rgba(255,229,180,0.15);border-radius:10px;padding:2px 8px;font-size:11px;">📍 ' + (profile.distance_km < 1 ? '<1' : profile.distance_km) + ' km</span>' : ''}</div>
+        <div style="font-size:13px;color:rgba(255,229,180,0.8);margin-bottom:6px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;">
+          ${flag} ${city}${profile.profession ? ' · ' + profile.profession : ''}${distLabel}
+        </div>
         ${profile.bio ? `<div style="font-size:12px;color:rgba(255,229,180,0.65);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${profile.bio}</div>` : ''}
       </div>
 
@@ -378,53 +397,47 @@ const FeedPage = (() => {
 
     filterContinent(continent, btn) {
       document.querySelectorAll('.continent-btn').forEach(b => {
-        b.style.background = '#FFF0E0';
-        b.style.color = '#8B1A00';
-        b.style.border = '1.5px solid #FFD4A0';
+        b.style.background = '#FFF0E0'; b.style.color = '#8B1A00'; b.style.border = '1.5px solid #FFD4A0';
       });
-      if (btn) {
-        btn.style.background = 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)';
-        btn.style.color = '#FFE5B4';
-        btn.style.border = 'none';
-      }
+      if (btn) { btn.style.background = 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)'; btn.style.color = '#FFE5B4'; btn.style.border = 'none'; }
       profiles = []; currentIdx = 0; photoIndexes = {};
       loadProfiles({ continent });
     },
 
     filterByCountry(country_code, btn) {
       document.querySelectorAll('.continent-btn').forEach(b => {
-        b.style.background = '#FFF0E0';
-        b.style.color = '#8B1A00';
-        b.style.border = '1.5px solid #FFD4A0';
+        b.style.background = '#FFF0E0'; b.style.color = '#8B1A00'; b.style.border = '1.5px solid #FFD4A0';
       });
-      if (btn) {
-        btn.style.background = 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)';
-        btn.style.color = '#FFE5B4';
-        btn.style.border = 'none';
-      }
+      if (btn) { btn.style.background = 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)'; btn.style.color = '#FFE5B4'; btn.style.border = 'none'; }
       profiles = []; currentIdx = 0; photoIndexes = {};
       loadProfiles({ country_code });
     },
 
+    filterByDistance(km, btn) {
+      document.querySelectorAll('.continent-btn').forEach(b => {
+        b.style.background = '#FFF0E0'; b.style.color = '#8B1A00'; b.style.border = '1.5px solid #FFD4A0';
+      });
+      if (btn) { btn.style.background = 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)'; btn.style.color = '#FFE5B4'; btn.style.border = 'none'; }
+      profiles = []; currentIdx = 0; photoIndexes = {};
+      loadProfiles({ distance_max: km, sort_distance: true });
+    },
+
     filterOnline(btn) {
       document.querySelectorAll('.continent-btn').forEach(b => {
-        b.style.background = '#FFF0E0';
-        b.style.color = '#8B1A00';
-        b.style.border = '1.5px solid #FFD4A0';
+        b.style.background = '#FFF0E0'; b.style.color = '#8B1A00'; b.style.border = '1.5px solid #FFD4A0';
       });
-      if (btn) {
-        btn.style.background = 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)';
-        btn.style.color = '#FFE5B4';
-        btn.style.border = 'none';
-      }
+      if (btn) { btn.style.background = 'linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00)'; btn.style.color = '#FFE5B4'; btn.style.border = 'none'; }
       profiles = []; currentIdx = 0; photoIndexes = {};
       loadProfiles({ onlineOnly: true });
     },
 
     showFilters() {
       const f = currentFilters;
+      const distVal = f.distance_max || 10000;
+      const distLabel = distVal >= 10000 ? 'Monde entier' : distVal + ' km';
       Modal.show(`
         <div style="display:flex;flex-direction:column;gap:16px;padding-bottom:8px;">
+
           <div>
             <label style="font-size:12px;color:#C4865A;text-transform:uppercase;letter-spacing:1px;font-weight:700;">👤 Genre recherché</label>
             <div style="display:flex;gap:8px;margin-top:8px;">
@@ -433,14 +446,7 @@ const FeedPage = (() => {
               <button id="fg-man"   onclick="FeedPage._setGenderBtn('man')"   style="flex:1;padding:9px 6px;border-radius:50px;border:1.5px solid #FFD4A0;background:${f.gender==='man'?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${f.gender==='man'?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;">♂ Hommes</button>
             </div>
           </div>
-          <div style="border-top:1px solid #FFE4C4;padding-top:14px;">
-            <label style="font-size:12px;color:#C4865A;text-transform:uppercase;letter-spacing:1px;font-weight:700;">📍 Pays</label>
-            <div style="display:flex;gap:8px;margin-top:8px;">
-              <button onclick="FeedPage._setCountryFilter('',this)" style="flex:1;padding:9px 6px;border-radius:50px;border:1.5px solid #FFD4A0;background:${!f.country_code?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${!f.country_code?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;">🌍 Tous</button>
-              <button onclick="FeedPage._setCountryFilter('TG',this)" style="flex:1;padding:9px 6px;border-radius:50px;border:1.5px solid #FFD4A0;background:${f.country_code==='TG'?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${f.country_code==='TG'?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;">🇹🇬 Togo</button>
-              <button onclick="FeedPage._setCountryFilter('BJ',this)" style="flex:1;padding:9px 6px;border-radius:50px;border:1.5px solid #FFD4A0;background:${f.country_code==='BJ'?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${f.country_code==='BJ'?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;">🇧🇯 Bénin</button>
-            </div>
-          </div>
+
           <div style="border-top:1px solid #FFE4C4;padding-top:14px;">
             <label style="font-size:12px;color:#C4865A;text-transform:uppercase;letter-spacing:1px;font-weight:700;">🎂 Âge : <span id="lbl-amin">${f.age_min||18}</span> – <span id="lbl-amax">${f.age_max||60}</span> ans</label>
             <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;">
@@ -450,10 +456,33 @@ const FeedPage = (() => {
                 oninput="document.getElementById('lbl-amax').textContent=this.value;FeedPage._tmpFilters.age_max=+this.value">
             </div>
           </div>
-          <div style="display:flex;gap:10px;margin-top:4px;">
-            <button onclick="FeedPage._resetFilters()" style="flex:1;background:#FFF0E0;border:1.5px solid #FFD4A0;color:#8B1A00;padding:12px;border-radius:50px;cursor:pointer;font-size:13px;">Réinitialiser</button>
-            <button onclick="FeedPage._applyFilters()" style="flex:2;background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;color:#FFE5B4;padding:12px;border-radius:50px;font-weight:700;cursor:pointer;font-size:14px;font-family:'Playfair Display',serif;">Afficher les résultats</button>
+
+          <div style="border-top:1px solid #FFE4C4;padding-top:14px;">
+            <label style="font-size:12px;color:#C4865A;text-transform:uppercase;letter-spacing:1px;font-weight:700;">📍 Distance max : <span id="lbl-dist">${distLabel}</span></label>
+            <div style="margin-top:10px;">
+              <input type="range" id="slider-dist" min="0" max="10000" step="50" value="${distVal}" style="width:100%;accent-color:#D4380D;"
+                oninput="(function(v){document.getElementById('lbl-dist').textContent=v>=10000?'Monde entier':v+'km';FeedPage._tmpFilters.distance_max=v>=10000?null:v;FeedPage._tmpFilters.sort_distance=v<10000;})(+this.value)">
+              <div style="display:flex;justify-content:space-between;font-size:10px;color:#C4865A;margin-top:6px;">
+                <span>0</span><span>100km</span><span>500km</span><span>2000km</span><span>🌍</span>
+              </div>
+            </div>
           </div>
+
+          <div style="border-top:1px solid #FFE4C4;padding-top:14px;">
+            <label style="font-size:12px;color:#C4865A;text-transform:uppercase;letter-spacing:1px;font-weight:700;">💞 Je recherche</label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+              <button id="rel-any"     onclick="FeedPage._setRelation('any')"     style="padding:12px 8px;border-radius:14px;border:1.5px solid ${(f.relation_type||'any')==='any'?'#D4380D':'#FFD4A0'};background:${(f.relation_type||'any')==='any'?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${(f.relation_type||'any')==='any'?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;text-align:center;">🦋<br><span style="font-size:11px;">Ouvert à tout</span></button>
+              <button id="rel-serious" onclick="FeedPage._setRelation('serious')" style="padding:12px 8px;border-radius:14px;border:1.5px solid ${f.relation_type==='serious'?'#D4380D':'#FFD4A0'};background:${f.relation_type==='serious'?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${f.relation_type==='serious'?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;text-align:center;">💍<br><span style="font-size:11px;">Relation sérieuse</span></button>
+              <button id="rel-fun"     onclick="FeedPage._setRelation('fun')"     style="padding:12px 8px;border-radius:14px;border:1.5px solid ${f.relation_type==='fun'?'#D4380D':'#FFD4A0'};background:${f.relation_type==='fun'?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${f.relation_type==='fun'?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;text-align:center;">🔥<br><span style="font-size:11px;">Fun & rencontre</span></button>
+              <button id="rel-friend"  onclick="FeedPage._setRelation('friend')"  style="padding:12px 8px;border-radius:14px;border:1.5px solid ${f.relation_type==='friend'?'#D4380D':'#FFD4A0'};background:${f.relation_type==='friend'?'linear-gradient(135deg,#8B1A00,#D4380D)':'#FFF0E0'};color:${f.relation_type==='friend'?'#FFE5B4':'#8B1A00'};cursor:pointer;font-size:13px;text-align:center;">🤝<br><span style="font-size:11px;">Amitié</span></button>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:4px;">
+            <button onclick="FeedPage._resetFilters()" style="flex:1;background:#FFF0E0;border:1.5px solid #FFD4A0;color:#8B1A00;padding:12px;border-radius:50px;cursor:pointer;font-size:13px;">🔄 Réinitialiser</button>
+            <button onclick="FeedPage._applyFilters()" style="flex:2;background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;color:#FFE5B4;padding:12px;border-radius:50px;font-weight:700;cursor:pointer;font-size:14px;font-family:'Playfair Display',serif;">Voir les résultats 🔥</button>
+          </div>
+
         </div>`, '⚙️ Filtres');
       this._tmpFilters = { ...f };
     },
@@ -472,8 +501,17 @@ const FeedPage = (() => {
       });
     },
 
-    _setCountryFilter(code, btn) {
-      this._tmpFilters.country_code = code;
+    _setRelation(type) {
+      this._tmpFilters.relation_type = type;
+      ['any','serious','fun','friend'].forEach(k => {
+        const el = document.getElementById('rel-' + k);
+        if (el) {
+          const active = k === type;
+          el.style.background = active ? 'linear-gradient(135deg,#8B1A00,#D4380D)' : '#FFF0E0';
+          el.style.color = active ? '#FFE5B4' : '#8B1A00';
+          el.style.border = active ? '1.5px solid #D4380D' : '1.5px solid #FFD4A0';
+        }
+      });
     },
 
     _applyFilters() {
@@ -490,6 +528,7 @@ const FeedPage = (() => {
     },
 
     showNotifs() { App.navigate('matches'); },
+
     toggleLocation() {
       const enabled = localStorage.getItem('locationEnabled') === 'true';
       const newState = !enabled;
@@ -513,13 +552,7 @@ const FeedPage = (() => {
       currentIdx = 0;
       profiles = [];
       photoIndexes = {};
-      // swipes conservés
       loadProfiles({});
     },
   };
 })();
-
-
-
-
-
