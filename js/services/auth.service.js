@@ -84,6 +84,7 @@ const AuthService = (() => {
   async function login(email, password) {
     const res = await API.post('/auth/login', { email, password });
     save(res.data);
+    sendLocation();
     // Mettre à jour les infos user complètes depuis /me
     try {
       const me = await API.get('/me');
@@ -144,6 +145,7 @@ const AuthService = (() => {
     login, register, logout, updateUser, init,
   };
 })();
+
 
 
 
