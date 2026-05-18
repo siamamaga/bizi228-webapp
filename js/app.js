@@ -126,7 +126,7 @@ const App = (() => {
           '<p style="font-size:13px;color:#C4865A;margin-bottom:20px;">Ce soir, tout est possible !</p>' +
           '<div style="display:flex;gap:10px;">' +
             '<button onclick="Modal.close()" style="flex:1;background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;color:#FFE5B4;padding:12px;border-radius:50px;font-weight:700;cursor:pointer;font-family:Playfair Display,serif;">Rester 🔥</button>' +
-            '<button onclick="Modal.close()" style="flex:1;background:#FFF0E0;border:1px solid #FFD4A0;color:#8B1A00;padding:12px;border-radius:50px;cursor:pointer;">Quitter</button>' +
+            '<button onclick="window.location.href='about:blank'" style="flex:1;background:#FFF0E0;border:1px solid #FFD4A0;color:#8B1A00;padding:12px;border-radius:50px;cursor:pointer;">Quitter</button>' +
           '</div>' +
         '</div>', '');
     } else if (currentPage === 'chat') {
@@ -157,6 +157,7 @@ const App = (() => {
   function logout() { AuthService.logout(); }
   return { navigate, showAuth, showApp, openMenu, closeMenu, logout };
 })();
+
 
 
 
