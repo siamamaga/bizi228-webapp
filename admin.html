@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bénin Bizi — Admin Panel</title>
+<title>AfroBizi — Admin Panel</title>
 <link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -149,12 +149,12 @@ select.input-field option{background:#1A1320;}
   <div class="login-box">
     <div class="login-logo">
       <div class="login-logo-icon">🦋</div>
-      <h1>Bénin Bizi</h1>
+      <h1>AfroBizi</h1>
       <p>Admin Panel — Accès restreint</p>
     </div>
     <div class="form-group">
       <label class="form-label">Email administrateur</label>
-      <input type="email" id="login-email" class="form-input" placeholder="admin@beninbizi.fr" value="admin@beninbizi.fr">
+      <input type="email" id="login-email" class="form-input" placeholder="admin@afrobizi.fr" value="admin@afrobizi.fr">
     </div>
     <div class="form-group">
       <label class="form-label">Mot de passe</label>
@@ -169,7 +169,7 @@ select.input-field option{background:#1A1320;}
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">🦋</div>
-      <div><span>Bénin Bizi</span><small>Admin Panel</small></div>
+      <div><span>AfroBizi</span><small>Admin Panel</small></div>
     </div>
     <div class="nav-section">Principal</div>
     <div class="nav-item active" onclick="showPage('dashboard',this)">
@@ -178,7 +178,7 @@ select.input-field option{background:#1A1320;}
     <div class="nav-item" onclick="showPage('analytics',this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analytics
     </div>
-    <div class="nav-item" onclick="window.open('https://Bénin Bizi.fr','_blank')">
+    <div class="nav-item" onclick="window.open('https://AfroBizi.fr','_blank')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Voir le site
     </div>
     <div class="nav-section">Gestion</div>
@@ -426,7 +426,7 @@ select.input-field option{background:#1A1320;}
       <div id="page-landing_editor" class="page">
         <div class="section-header">
           <div><h2>Éditeur Landing Page</h2><p>Personnalisez votre page d'accueil</p></div>
-          <a href="https://Bénin Bizi.fr" target="_blank" class="site-preview-btn">👁️ Voir le site</a>
+          <a href="https://AfroBizi.fr" target="_blank" class="site-preview-btn">👁️ Voir le site</a>
         </div>
         <div class="card">
           <div class="card-title">🎬 Images des sidebars (diaporama desktop)</div>
@@ -438,7 +438,7 @@ select.input-field option{background:#1A1320;}
             <div style="aspect-ratio:9/16;background:rgba(232,49,122,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;border:1px dashed var(--border);">🦋<br><small style="font-size:10px;color:var(--muted);">Image 4</small></div>
             <div style="aspect-ratio:9/16;background:rgba(232,49,122,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;border:1px dashed var(--border);">🦋<br><small style="font-size:10px;color:var(--muted);">Image 5</small></div>
           </div>
-          <p style="font-size:12px;color:var(--muted);">Les 5 images Cloudinary sont configurées dans index.html du frontend. Pour les modifier, uploadez de nouvelles images sur Cloudinary dossier <code style="background:var(--surface);padding:2px 6px;border-radius:4px;">Bénin Bizi/landing</code> et mettez à jour les URLs dans index.html.</p>
+          <p style="font-size:12px;color:var(--muted);">Les 5 images Cloudinary sont configurées dans index.html du frontend. Pour les modifier, uploadez de nouvelles images sur Cloudinary dossier <code style="background:var(--surface);padding:2px 6px;border-radius:4px;">AfroBizi/landing</code> et mettez à jour les URLs dans index.html.</p>
         </div>
       </div>
 
@@ -448,9 +448,9 @@ select.input-field option{background:#1A1320;}
         <div class="grid-2">
           <div class="card">
             <div class="card-title">🔧 Configuration générale</div>
-            <div class="input-group" style="margin-bottom:12px;"><label class="input-label">Nom de la plateforme</label><input type="text" id="cfg-name" class="input-field" value="Bénin Bizi"></div>
-            <div class="input-group" style="margin-bottom:12px;"><label class="input-label">URL Frontend</label><input type="text" class="input-field" value="https://Bénin Bizi.fr" readonly style="opacity:0.6;"></div>
-            <div class="input-group" style="margin-bottom:12px;"><label class="input-label">URL Backend</label><input type="text" class="input-field" value="https://api.beninbizi.fr" readonly style="opacity:0.6;"></div>
+            <div class="input-group" style="margin-bottom:12px;"><label class="input-label">Nom de la plateforme</label><input type="text" id="cfg-name" class="input-field" value="AfroBizi"></div>
+            <div class="input-group" style="margin-bottom:12px;"><label class="input-label">URL Frontend</label><input type="text" class="input-field" value="https://AfroBizi.fr" readonly style="opacity:0.6;"></div>
+            <div class="input-group" style="margin-bottom:12px;"><label class="input-label">URL Backend</label><input type="text" class="input-field" value="https://api.afrobizi.fr" readonly style="opacity:0.6;"></div>
             <div class="input-group" style="margin-bottom:16px;"><label class="input-label">Âge minimum</label><input type="number" id="cfg-age" class="input-field" value="18"></div>
             <button class="btn btn-primary" onclick="showToast('Paramètres sauvegardés ✅','⚙️')">Sauvegarder</button>
           </div>
@@ -505,7 +505,7 @@ select.input-field option{background:#1A1320;}
 <div id="toast-root"></div>
 
 <script>
-const API = 'https://api.beninbizi.fr/api';
+const API = 'https://api.afrobizi.fr/api';
 let TOKEN = localStorage.getItem('mm_admin_token');
 let currentPage = 'dashboard';
 let membersPage = 0;
@@ -927,7 +927,7 @@ function exportRevenue() {
     const csv = rows.map(r=>r.join(',')).join('\n');
     const a = document.createElement('a');
     a.href = 'data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
-    a.download = `revenus-Bénin Bizi-${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `revenus-AfroBizi-${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
     showToast('Export CSV téléchargé ✅','📊');
   });
@@ -1114,7 +1114,7 @@ function previewPromo() {
 function initBroadcast() {
   document.getElementById('broadcast-history').innerHTML = `<table>
     <thead><tr><th>Titre</th><th>Cible</th><th>Destinataires</th><th>Date</th><th>Statut</th></tr></thead>
-    <tbody><tr><td>Bienvenue sur Bénin Bizi !</td><td>Tous</td><td>20</td><td>${new Date().toLocaleDateString('fr-FR')}</td><td><span class="badge badge-active">Envoyé</span></td></tr></tbody>
+    <tbody><tr><td>Bienvenue sur AfroBizi !</td><td>Tous</td><td>20</td><td>${new Date().toLocaleDateString('fr-FR')}</td><td><span class="badge badge-active">Envoyé</span></td></tr></tbody>
   </table>`;
 }
 
@@ -1194,6 +1194,7 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 

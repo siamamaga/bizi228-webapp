@@ -4,9 +4,9 @@ importScripts('https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging-comp
 
 firebase.initializeApp({
   apiKey: "AIzaSyDFsYsWBwKq1d0kNdJYJlX0ewGugUfyZmk",
-  authDomain: "Bénin Bizi.firebaseapp.com",
-  projectId: "Bénin Bizi",
-  storageBucket: "Bénin Bizi.firebasestorage.app",
+  authDomain: "AfroBizi.firebaseapp.com",
+  projectId: "AfroBizi",
+  storageBucket: "AfroBizi.firebasestorage.app",
   messagingSenderId: "1035382105933",
   appId: "1:1035382105933:web:9ec53944535d1eb12db904"
 });
@@ -23,4 +23,5 @@ messaging.onBackgroundMessage(function(payload) {
     data: payload.data
   });
 });
+
 

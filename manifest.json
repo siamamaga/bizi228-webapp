@@ -1,6 +1,6 @@
 {
-  "name": "Bénin Bizi",
-  "short_name": "Bénin Bizi",
+  "name": "AfroBizi",
+  "short_name": "AfroBizi",
   "description": "L'amour n'a pas de frontières — Afrique ↔ Monde",
   "start_url": "/",
   "display": "standalone",
@@ -16,4 +16,5 @@
   "categories": ["social", "lifestyle"],
   "screenshots": []
 }
+
 

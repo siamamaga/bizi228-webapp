@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   Bénin Bizi — CSS Composants
+   AfroBizi — CSS Composants
    components.css
 ═══════════════════════════════════════════════ */
 
@@ -526,6 +526,7 @@ select.input-field option { background: var(--charcoal); }
 
 .match-name { font-size:15px; font-weight:600; color: #1C1917 !important; }
 .match-preview { font-size:13px; color:var(--muted); }
+
 
 
 

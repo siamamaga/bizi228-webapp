@@ -1,4 +1,4 @@
-// js/pages/feed.js — Bénin Bizi
+// js/pages/feed.js — AfroBizi
 const FeedPage = (() => {
   let profiles = [];
   let currentIdx = 0;
@@ -25,8 +25,8 @@ const FeedPage = (() => {
     page.innerHTML = `
       <div class="page-header" style="padding:12px 16px 8px;background:rgba(255,248,240,0.97);border-bottom:1px solid #FFE4C4;">
         <div style="display:flex;align-items:center;gap:8px;">
-          <img src="/icons/benin-bizi-logo.jpg" style="width:36px;height:36px;border-radius:10px;object-fit:cover;">
-          <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#8B1A00;">Bénin Bizi</span>
+          <img src="/icons/afro-bizi-logo.jpg" style="width:36px;height:36px;border-radius:10px;object-fit:cover;">
+          <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#8B1A00;">AfroBizi</span>
         </div>
         <div style="display:flex;gap:8px;">
           <button class="header-btn" onclick="FeedPage.showFilters()" style="background:#FFF0E0;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;">⚙️</button>
@@ -556,3 +556,4 @@ const FeedPage = (() => {
     },
   };
 })();
+

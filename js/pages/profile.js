@@ -680,9 +680,9 @@ const SettingsPage = {
 
         <!-- Support -->
         <div style="padding:16px 8px 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);">Support</div>
-        <div class="settings-row" onclick="window.open('mailto:support@Bénin Bizi.fr')">
+        <div class="settings-row" onclick="window.open('mailto:support@AfroBizi.fr')">
           <span class="settings-icon">❓</span>
-          <div class="settings-text"><span>Contacter le support</span><small>support@Bénin Bizi.fr</small></div>
+          <div class="settings-text"><span>Contacter le support</span><small>support@AfroBizi.fr</small></div>
           <span class="settings-arrow">›</span>
         </div>
         <div class="settings-row" onclick="SettingsPage.exportData()">
@@ -700,8 +700,8 @@ const SettingsPage = {
         </div>
 
         <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.15);margin-top:32px;padding-bottom:16px;">
-          Bénin Bizi v1.0.0 · L'amour sans frontières 🦋<br>
-          <span style="color:rgba(255,255,255,0.1);">© 2026 Bénin Bizi — Tous droits réservés</span>
+          AfroBizi v1.0.0 · L'Afrique connectée 🦋<br>
+          <span style="color:rgba(255,255,255,0.1);">© 2026 AfroBizi — Tous droits réservés</span>
         </p>
       </div>
     `;
@@ -810,6 +810,8 @@ const SettingsPage = {
     }
   },
 };
+
+
 
 
 

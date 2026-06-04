@@ -7,7 +7,7 @@ function parseDate(str) {
   return new Date(str.replace(' ', 'T'));
 }
 
-// Bénin Bizi SPA Router
+// AfroBizi SPA Router
 const App = (() => {
   let currentPage = 'feed';
   const pages = {
@@ -107,9 +107,9 @@ const App = (() => {
   }, 5000);
 
   // Wake-up backend
-  fetch('https://api.beninbizi.fr/api/ping').catch(() => {});
+  fetch('https://api.afrobizi.fr/api/ping').catch(() => {});
   setInterval(function() {
-    fetch('https://api.beninbizi.fr/api/ping').catch(() => {});
+    fetch('https://api.afrobizi.fr/api/ping').catch(() => {});
   }, 60000);
 
   document.addEventListener('DOMContentLoaded', init);
@@ -122,7 +122,7 @@ const App = (() => {
       Modal.show(
         '<div style="text-align:center;padding:16px;">' +
           '<div style="font-size:48px;margin-bottom:12px;">🔥</div>' +
-          '<p style="font-size:16px;font-weight:600;color:#3D1A00;margin-bottom:8px;">Quitter Bénin Bizi ?</p>' +
+          '<p style="font-size:16px;font-weight:600;color:#3D1A00;margin-bottom:8px;">Quitter AfroBizi ?</p>' +
           '<p style="font-size:13px;color:#C4865A;margin-bottom:20px;">Ce soir, tout est possible !</p>' +
           '<div style="display:flex;gap:10px;">' +
             '<button onclick="Modal.close()" style="flex:1;background:linear-gradient(135deg,#8B1A00,#D4380D,#FF7A00);border:none;color:#FFE5B4;padding:12px;border-radius:50px;font-weight:700;cursor:pointer;font-family:Playfair Display,serif;">Rester 🔥</button>' +
@@ -157,6 +157,7 @@ const App = (() => {
   function logout() { AuthService.logout(); }
   return { navigate, showAuth, showApp, openMenu, closeMenu, logout };
 })();
+
 
 
 
